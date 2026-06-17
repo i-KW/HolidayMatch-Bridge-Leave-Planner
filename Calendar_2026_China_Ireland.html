@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 年年历 · 中国 &amp; 爱尔兰双节标记</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; background:#f5f5f5; color:#333; padding:30px 20px; }
+.container { max-width:860px; margin:0 auto; }
+
+/* Header */
+.header { text-align:center; margin-bottom:30px; }
+.header h1 { font-size:1.8em; margin-bottom:8px; }
+.header .sub { font-size:0.82em; color:#555; line-height:1.8; }
+.header .sub .tag-cn { display:inline-block; background:#e8f5e9; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub .tag-ie { display:inline-block; background:#e3f2fd; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub .tag-both { display:inline-block; background:#e8e8ff; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub .tag-work { display:inline-block; background:#ffebee; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub a { color:#1976d2; text-decoration:none; }
+.header .sub a:hover { text-decoration:underline; }
+
+/* Calendar Table */
+.month { margin-bottom:36px; background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); overflow:hidden; }
+.month-title { text-align:center; padding:14px 10px; font-size:1.15em; font-weight:bold; background:#fafafa; border-bottom:2px solid #eee; }
+.month-title .cn-holidays { font-size:0.8em; font-weight:normal; color:#555; display:block; margin-top:4px; }
+.month-title .cn-holidays .flag { font-size:1em; font-weight:700; color:#333; }
+table.cal { width:100%; border-collapse:collapse; }
+table.cal th { background:#f0f0f0; padding:8px 4px; font-size:0.85em; text-align:center; border:1px solid #e0e0e0; color:#555; }
+table.cal td { border:1px solid #e0e0e0; text-align:center; vertical-align:top; padding:6px 2px; height:68px; width:14.28%; font-size:0.95em; }
+table.cal td .day { font-size:1.15em; font-weight:500; display:block; margin-bottom:2px; }
+table.cal td .label { font-size:0.68em; display:block; line-height:1.35; color:#555; }
+table.cal td.empty { background:#fafafa; }
+table.cal td.weekend { background:#f8f8ff; }
+table.cal td.cn { background:#e8f5e9; }
+table.cal td.cn .label { color:#2e7d32; font-weight:500; }
+table.cal td.ie { background:#e3f2fd; }
+table.cal td.ie .label { color:#1565c0; font-weight:500; }
+table.cal td.both { background:#e8e8ff; }
+table.cal td.both .label { color:#5c6bc0; font-weight:600; }
+table.cal td.work { background:#ffebee; }
+table.cal td.work .label { color:#c62828; font-weight:600; }
+
+/* Summary tables */
+.summary { background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); padding:24px; margin-bottom:36px; }
+.summary h2 { text-align:center; margin-bottom:16px; font-size:1.3em; }
+.summary table.sum { width:100%; border-collapse:collapse; margin-bottom:16px; }
+.summary table.sum th { background:#f5f5f5; padding:8px 10px; text-align:left; border:1px solid #e0e0e0; font-size:0.9em; }
+.summary table.sum td { padding:8px 10px; border:1px solid #e0e0e0; font-size:0.9em; }
+.summary table.sum tr:hover td { background:#fafafa; }
+.highlight { color:#c62828; font-weight:600; }
+
+/* Tips */
+.tips { background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); padding:24px; margin-bottom:36px; }
+.tips h2 { text-align:center; margin-bottom:16px; font-size:1.3em; }
+.tips table.tip { width:100%; border-collapse:collapse; }
+.tips table.tip th { background:#f5f5f5; padding:8px 10px; text-align:left; border:1px solid #e0e0e0; font-size:0.9em; }
+.tips table.tip td { padding:8px 10px; border:1px solid #e0e0e0; font-size:0.9em; }
+
+/* Footer */
+.footer { text-align:center; color:#888; font-size:0.85em; padding:20px 0; }
+.footer a { color:#1976d2; text-decoration:none; }
+.footer a:hover { text-decoration:underline; }
+
+@media print {
+  body { background:#fff; padding:15px; }
+  .month { box-shadow:none; border:1px solid #ddd; page-break-inside:avoid; }
+  .header .sub a { color:#333; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>📅 2026年中国＆爱尔兰工作和放假日历</h1>
+  <p style="font-size:1.15em;color:#666;margin:4px 0 10px;">2026 China &amp; Ireland Work &amp; Holiday Calendar</p>
+  <div class="sub">
+    <span class="tag-cn">🟢 中国节假日</span>
+    <span class="tag-ie">🔵 爱尔兰节假日</span>
+    <span class="tag-both">🟣 两国共同放假</span>
+    <span class="tag-work">🔴 调休上班</span>
+    <br>
+    数据来源：<a href="http://www.gov.cn/zhengce/zhengceku/202511/content_7047091.htm" target="_blank">CN节假日安排通知</a>
+    · <a href="https://www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/public-holidays/" target="_blank">Citizens Information Ireland</a>
+  </div>
+</div>
+
+<!-- ====== 一月 ====== -->
+<div class="month">
+  <div class="month-title">一月 · January 2026 <span class="cn-holidays"><strong class="flag">CN</strong> 元旦 1/1-1/3 🟢 &emsp; <strong class="flag">IE</strong> New Year's Day 1/1 🔵</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="cn"><div class="day">1</div><div class="label">🎉元旦</div></td>
+      <td class="cn"><div class="day">2</div><div class="label">元旦假</div></td>
+      <td class="cn weekend"><div class="day">3</div><div class="label">元旦假</div></td>
+      <td class="work weekend"><div class="day">4</div><div class="label">⚠️补班</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">5</div></td><td><div class="day">6</div></td><td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td>
+      <td class="weekend"><div class="day">10</div></td><td class="weekend"><div class="day">11</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">12</div></td><td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td>
+      <td class="weekend"><div class="day">17</div></td><td class="weekend"><div class="day">18</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td>
+      <td class="weekend"><div class="day">24</div></td><td class="weekend"><div class="day">25</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="weekend"><div class="day">31</div></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 二月 ====== -->
+<div class="month">
+  <div class="month-title">二月 · February 2026 <span class="cn-holidays"><strong class="flag">CN</strong> 春节 2/15-2/23 🟢 &emsp; <strong class="flag">IE</strong> St. Brigid's Day 2/2 🔵</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="work weekend"><div class="day">14</div><div class="label">⚠️补班</div></td>
+      <td class="weekend"><div class="day">1</div></td>
+    </tr>
+    <tr>
+      <td class="ie"><div class="day">2</div><div class="label">☘️St. Brigid</div></td>
+      <td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td><td><div class="day">6</div></td>
+      <td class="weekend"><div class="day">7</div></td><td class="weekend"><div class="day">8</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td>
+      <td class="weekend"><div class="day">14</div></td>
+      <td class="cn weekend"><div class="day">15</div><div class="label">🧧春节</div></td>
+    </tr>
+    <tr>
+      <td class="cn"><div class="day">16</div><div class="label">🧧春节</div></td>
+      <td class="cn"><div class="day">17</div><div class="label">春节</div></td>
+      <td class="cn"><div class="day">18</div><div class="label">春节</div></td>
+      <td class="cn"><div class="day">19</div><div class="label">春节</div></td>
+      <td class="cn"><div class="day">20</div><div class="label">春节</div></td>
+      <td class="cn weekend"><div class="day">21</div><div class="label">春节</div></td>
+      <td class="cn weekend"><div class="day">22</div><div class="label">春节</div></td>
+    </tr>
+    <tr>
+      <td class="cn"><div class="day">23</div><div class="label">🧧春节</div></td>
+      <td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td>
+      <td class="work weekend"><div class="day">28</div><div class="label">⚠️补班</div></td>
+      <td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 三月 ====== -->
+<div class="month">
+  <div class="month-title">三月 · March 2026 <span class="cn-holidays"><strong class="flag">IE</strong> St. Patrick's Day 3/17 🔵（建议请 3/16 周一假连休 4 天 🍀）</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="empty"></td><td class="weekend"><div class="day">1</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td><td><div class="day">6</div></td>
+      <td class="weekend"><div class="day">7</div></td><td class="weekend"><div class="day">8</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td>
+      <td class="weekend"><div class="day">14</div></td><td class="weekend"><div class="day">15</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">16</div></td>
+      <td class="ie"><div class="day">17</div><div class="label">🍀St. Patrick</div></td>
+      <td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td>
+      <td class="weekend"><div class="day">21</div></td><td class="weekend"><div class="day">22</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td>
+      <td class="weekend"><div class="day">28</div></td><td class="weekend"><div class="day">29</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">30</div></td><td><div class="day">31</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 四月 ====== -->
+<div class="month">
+  <div class="month-title">四月 · April 2026 <span class="cn-holidays"><strong class="flag">CN</strong> 清明 4/4-4/6 🟢 &emsp; <strong class="flag">IE</strong> Easter Monday 4/6 🔵 &emsp; ➡ 4/6 🟣 两国同休</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td>
+      <td class="cn weekend"><div class="day">4</div><div class="label">🌿清明</div></td>
+      <td class="cn weekend"><div class="day">5</div><div class="label">清明</div></td>
+    </tr>
+    <tr>
+      <td class="both"><div class="day">6</div><div class="label">🌿清明 / 🐣Easter</div></td>
+      <td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td>
+      <td class="weekend"><div class="day">11</div></td><td class="weekend"><div class="day">12</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td>
+      <td class="weekend"><div class="day">18</div></td><td class="weekend"><div class="day">19</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td>
+      <td class="weekend"><div class="day">25</div></td><td class="weekend"><div class="day">26</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 五月 ====== -->
+<div class="month">
+  <div class="month-title">五月 · May 2026 <span class="cn-holidays"><strong class="flag">CN</strong> 劳动节 5/1-5/5 🟢 &emsp; <strong class="flag">IE</strong> May Bank Holiday 5/4 🔵 &emsp; ➡ 5/4 🟣 两国同休</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="cn"><div class="day">1</div><div class="label">🎯劳动节</div></td>
+      <td class="cn weekend"><div class="day">2</div><div class="label">劳动节</div></td>
+      <td class="cn weekend"><div class="day">3</div><div class="label">劳动节</div></td>
+    </tr>
+    <tr>
+      <td class="both"><div class="day">4</div><div class="label">🎯劳动节/🌸May BH</div></td>
+      <td class="cn"><div class="day">5</div><div class="label">劳动节</div></td>
+      <td><div class="day">6</div></td><td><div class="day">7</div></td><td><div class="day">8</div></td>
+      <td class="work weekend"><div class="day">9</div><div class="label">⚠️补班</div></td>
+      <td class="weekend"><div class="day">10</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td>
+      <td class="weekend"><div class="day">16</div></td><td class="weekend"><div class="day">17</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td>
+      <td class="weekend"><div class="day">23</div></td><td class="weekend"><div class="day">24</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td>
+      <td class="weekend"><div class="day">30</div></td><td class="weekend"><div class="day">31</div></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 六月 ====== -->
+<div class="month">
+  <div class="month-title">六月 · June 2026 <span class="cn-holidays"><strong class="flag">CN</strong> 端午 6/19-6/21 🟢 &emsp; <strong class="flag">IE</strong> June Bank Holiday 6/1 🔵</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="ie"><div class="day">1</div><div class="label">☀️June BH</div></td>
+      <td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td>
+      <td class="weekend"><div class="day">6</div></td><td class="weekend"><div class="day">7</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td>
+      <td class="weekend"><div class="day">13</div></td><td class="weekend"><div class="day">14</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td>
+      <td class="cn"><div class="day">19</div><div class="label">🐉端午</div></td>
+      <td class="cn weekend"><div class="day">20</div><div class="label">端午</div></td>
+      <td class="cn weekend"><div class="day">21</div><div class="label">端午</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td>
+      <td class="weekend"><div class="day">27</div></td><td class="weekend"><div class="day">28</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 七月 ====== -->
+<div class="month">
+  <div class="month-title">七月 · July 2026 <span class="cn-holidays">📌 本月无公众假日 😢</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td>
+      <td class="weekend"><div class="day">4</div></td><td class="weekend"><div class="day">5</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">6</div></td><td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td>
+      <td class="weekend"><div class="day">11</div></td><td class="weekend"><div class="day">12</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td>
+      <td class="weekend"><div class="day">18</div></td><td class="weekend"><div class="day">19</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td>
+      <td class="weekend"><div class="day">25</div></td><td class="weekend"><div class="day">26</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td><td><div class="day">31</div></td>
+      <td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 八月 ====== -->
+<div class="month">
+  <div class="month-title">八月 · August 2026 <span class="cn-holidays"><strong class="flag">IE</strong> August Bank Holiday 8/3 🔵</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="weekend"><div class="day">1</div></td><td class="weekend"><div class="day">2</div></td>
+    </tr>
+    <tr>
+      <td class="ie"><div class="day">3</div><div class="label">🏖️Aug BH</div></td>
+      <td><div class="day">4</div></td><td><div class="day">5</div></td><td><div class="day">6</div></td><td><div class="day">7</div></td>
+      <td class="weekend"><div class="day">8</div></td><td class="weekend"><div class="day">9</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td><td><div class="day">14</div></td>
+      <td class="weekend"><div class="day">15</div></td><td class="weekend"><div class="day">16</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">17</div></td><td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td>
+      <td class="weekend"><div class="day">22</div></td><td class="weekend"><div class="day">23</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td>
+      <td class="weekend"><div class="day">29</div></td><td class="weekend"><div class="day">30</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">31</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 九月 ====== -->
+<div class="month">
+  <div class="month-title">九月 · September 2026 <span class="cn-holidays"><strong class="flag">CN</strong> 中秋 9/25-9/27 🟢 &emsp; 9/20 国庆调班 🔴</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td>
+      <td class="weekend"><div class="day">5</div></td><td class="weekend"><div class="day">6</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td>
+      <td class="weekend"><div class="day">12</div></td><td class="weekend"><div class="day">13</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td>
+      <td class="weekend"><div class="day">19</div></td>
+      <td class="work weekend"><div class="day">20</div><div class="label">⚠️国庆调班</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td>
+      <td class="cn"><div class="day">25</div><div class="label">🥮中秋</div></td>
+      <td class="cn weekend"><div class="day">26</div><div class="label">中秋</div></td>
+      <td class="cn weekend"><div class="day">27</div><div class="label">中秋</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 十月 ====== -->
+<div class="month">
+  <div class="month-title">十月 · October 2026 <span class="cn-holidays"><strong class="flag">CN</strong> 国庆 10/1-10/7 🟢 &emsp; <strong class="flag">IE</strong> October Bank Holiday 10/26 🔵</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="cn"><div class="day">1</div><div class="label">🇨🇳国庆</div></td>
+      <td class="cn"><div class="day">2</div><div class="label">国庆</div></td>
+      <td class="cn weekend"><div class="day">3</div><div class="label">国庆</div></td>
+      <td class="cn weekend"><div class="day">4</div><div class="label">国庆</div></td>
+    </tr>
+    <tr>
+      <td class="cn"><div class="day">5</div><div class="label">国庆</div></td>
+      <td class="cn"><div class="day">6</div><div class="label">国庆</div></td>
+      <td class="cn"><div class="day">7</div><div class="label">🇨🇳国庆</div></td>
+      <td><div class="day">8</div></td><td><div class="day">9</div></td>
+      <td class="work weekend"><div class="day">10</div><div class="label">⚠️补班</div></td>
+      <td class="weekend"><div class="day">11</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">12</div></td><td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td>
+      <td class="weekend"><div class="day">17</div></td><td class="weekend"><div class="day">18</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td>
+      <td class="weekend"><div class="day">24</div></td><td class="weekend"><div class="day">25</div></td>
+    </tr>
+    <tr>
+      <td class="ie"><div class="day">26</div><div class="label">🍂Oct BH</div></td>
+      <td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="weekend"><div class="day">31</div></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 十一月 ====== -->
+<div class="month">
+  <div class="month-title">十一月 · November 2026 <span class="cn-holidays">📌 本月无公众假日</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="empty"></td><td class="weekend"><div class="day">1</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td><td><div class="day">6</div></td>
+      <td class="weekend"><div class="day">7</div></td><td class="weekend"><div class="day">8</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td>
+      <td class="weekend"><div class="day">14</div></td><td class="weekend"><div class="day">15</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td>
+      <td class="weekend"><div class="day">21</div></td><td class="weekend"><div class="day">22</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td>
+      <td class="weekend"><div class="day">28</div></td><td class="weekend"><div class="day">29</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 十二月 ====== -->
+<div class="month">
+  <div class="month-title">十二月 · December 2026 <span class="cn-holidays"><strong class="flag">IE</strong> Christmas 12/25 🔵 · St. Stephen's 12/26 🔵 · 12/28 补休 🔵</span></div>
+  <table class="cal">
+    <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    <tr>
+      <td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td>
+      <td class="weekend"><div class="day">5</div></td><td class="weekend"><div class="day">6</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td>
+      <td class="weekend"><div class="day">12</div></td><td class="weekend"><div class="day">13</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td>
+      <td class="weekend"><div class="day">19</div></td><td class="weekend"><div class="day">20</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td>
+      <td class="ie"><div class="day">25</div><div class="label">🎄圣诞</div></td>
+      <td class="ie weekend"><div class="day">26</div><div class="label">🎁St.Stephen</div></td>
+      <td class="weekend"><div class="day">27</div></td>
+    </tr>
+    <tr>
+      <td class="ie"><div class="day">28</div><div class="label">🎁补休</div></td>
+      <td><div class="day">29</div></td><td><div class="day">30</div></td><td><div class="day">31</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== Summary ====== -->
+<div class="summary">
+  <h2>📊 全年假日汇总</h2>
+
+  <h3 style="margin:12px 0 8px;font-size:1.05em;">🇨🇳 中国 2026 年节假日</h3>
+  <table class="sum">
+    <tr><th>节日</th><th>日期</th><th>天数</th><th>调休安排</th></tr>
+    <tr><td>🎉 元旦</td><td>1/1 (四) → 1/3 (六)</td><td><strong>3天</strong></td><td>1/4 (日) 补班</td></tr>
+    <tr><td>🧧 春节</td><td>2/15 (日) → 2/23 (一)</td><td><strong class="highlight">9天</strong></td><td>2/14 (六)、2/28 (六) 补班</td></tr>
+    <tr><td>🌿 清明节</td><td>4/4 (六) → 4/6 (一)</td><td><strong>3天</strong></td><td>不调休 ✅</td></tr>
+    <tr><td>🎯 劳动节</td><td>5/1 (五) → 5/5 (二)</td><td><strong>5天</strong></td><td>5/9 (六) 补班</td></tr>
+    <tr><td>🐉 端午节</td><td>6/19 (五) → 6/21 (日)</td><td><strong>3天</strong></td><td>不调休 ✅</td></tr>
+    <tr><td>🥮 中秋节</td><td>9/25 (五) → 9/27 (日)</td><td><strong>3天</strong></td><td>不调休 ✅</td></tr>
+    <tr><td>🇨🇳 国庆节</td><td>10/1 (四) → 10/7 (三)</td><td><strong>7天</strong></td><td>9/20 (日)、10/10 (六) 补班</td></tr>
+    <tr style="background:#f9f9f9;"><td colspan="2"><strong>合计</strong></td><td><strong>33天</strong></td><td>调休 6天</td></tr>
+  </table>
+
+  <h3 style="margin:12px 0 8px;font-size:1.05em;">🇮🇪 爱尔兰 2026 年公众假日</h3>
+  <table class="sum">
+    <tr><th>#</th><th>节日</th><th>日期</th><th>星期</th></tr>
+    <tr><td>1</td><td>🎉 New Year's Day 元旦</td><td>1月1日</td><td>周四</td></tr>
+    <tr><td>2</td><td>☘️ St. Brigid's Day 圣布里吉德节</td><td>2月2日</td><td>周一</td></tr>
+    <tr><td>3</td><td>🍀 St. Patrick's Day 圣帕特里克节</td><td>3月17日</td><td>周二</td></tr>
+    <tr><td>4</td><td>🐣 Easter Monday 复活节周一</td><td>4月6日</td><td>周一</td></tr>
+    <tr><td>5</td><td>🌸 May Bank Holiday 五月银行假日</td><td>5月4日</td><td>周一</td></tr>
+    <tr><td>6</td><td>☀️ June Bank Holiday 六月银行假日</td><td>6月1日</td><td>周一</td></tr>
+    <tr><td>7</td><td>🏖️ August Bank Holiday 八月银行假日</td><td>8月3日</td><td>周一</td></tr>
+    <tr><td>8</td><td>🍂 October Bank Holiday 十月银行假日</td><td>10月26日</td><td>周一</td></tr>
+    <tr><td>9</td><td>🎄 Christmas Day 圣诞节</td><td>12月25日</td><td>周五</td></tr>
+    <tr><td>10</td><td>🎁 St. Stephen's Day 圣斯蒂芬节</td><td>12月26日</td><td>周六</td></tr>
+    <tr><td>—</td><td>🔄 补休 (St. Stephen's Day)</td><td>12月28日</td><td>周一</td></tr>
+  </table>
+
+  <h3 style="margin:12px 0 8px;font-size:1.05em;">🟣 两国共同放假日</h3>
+  <table class="sum">
+    <tr><th>日期</th><th>中国节日</th><th>爱尔兰节日</th></tr>
+    <tr><td><strong>4/6 (一)</strong></td><td>🌿 清明节</td><td>🐣 Easter Monday</td></tr>
+    <tr><td><strong>5/4 (一)</strong></td><td>🎯 劳动节假期</td><td>🌸 May Bank Holiday</td></tr>
+  </table>
+</div>
+
+<!-- ====== Tips ====== -->
+<div class="tips">
+  <h2>💡 拼假攻略</h2>
+  <p style="text-align:center;color:#666;margin-bottom:16px;font-size:0.9em;">拼假 = 请年假 (Annual Leave) 把假期和周末连接起来，获得更长连休</p>
+
+  <h3 style="margin:16px 0 10px;font-size:1.05em;color:#2e7d32;">🇨🇳 按中国节假日拼假</h3>
+  <p style="font-size:0.85em;color:#666;margin-bottom:10px;">适用于：在中国公司工作，或希望在爱尔兰请年假来过中国节日</p>
+  <table class="tip">
+    <tr><th>节日</th><th>放假日期</th><th>拼假方案</th><th>年假</th><th>连休</th></tr>
+    <tr style="background:#fff8e1;">
+      <td>🧧 <strong>春节</strong></td>
+      <td>2/15(日)→2/23(一) 共9天<br>补班：2/14(六)、2/28(六)</td>
+      <td>已是9天超长假，若再请2/24(二)→2/27(五) 4天<br>可避开2/28补班，延至3/1(日)</td>
+      <td><strong>4天</strong></td>
+      <td><strong>15天 🏆</strong></td>
+    </tr>
+    <tr>
+      <td>🎯 <strong>劳动节</strong></td>
+      <td>5/1(五)→5/5(二) 共5天<br>补班：5/9(六)</td>
+      <td>请 5/6(三)→5/8(五) 3天年假<br>可避开5/9补班，延至5/10(日)</td>
+      <td><strong>3天</strong></td>
+      <td><strong>10天</strong></td>
+    </tr>
+    <tr>
+      <td>🇨🇳 <strong>国庆节</strong></td>
+      <td>10/1(四)→10/7(三) 共7天<br>补班：10/10(六)</td>
+      <td>请 10/8(四)→10/10(六) 3天年假<br>可避开补班，延至10/11(日)</td>
+      <td><strong>3天</strong></td>
+      <td><strong>11天</strong></td>
+    </tr>
+  </table>
+
+  <h3 style="margin:24px 0 10px;font-size:1.05em;color:#1565c0;">🇮🇪 按爱尔兰 Bank Holiday & 节假日拼假</h3>
+  <p style="font-size:0.85em;color:#666;margin-bottom:10px;">适用于：在爱尔兰公司工作，用年假延长爱尔兰公众假日</p>
+  <table class="tip">
+    <tr><th>时间段</th><th>方案</th><th>年假</th><th>连休</th></tr>
+    <tr>
+      <td>🍀 <strong>3月</strong></td>
+      <td>St. Patrick's Day 3/17(二) → 请 3/16(一) 1天年假</td>
+      <td><strong>1天</strong></td>
+      <td><strong>4天</strong></td>
+    </tr>
+    <tr>
+      <td>🐣 <strong>4月</strong></td>
+      <td>Easter Monday 4/6(一) → 自然三连休</td>
+      <td><strong>0天</strong></td>
+      <td><strong>3天</strong></td>
+    </tr>
+    <tr>
+      <td>🌸 <strong>5月</strong></td>
+      <td>May Bank Holiday 5/4(一) → 自然三连休</td>
+      <td><strong>0天</strong></td>
+      <td><strong>3天</strong></td>
+    </tr>
+    <tr>
+      <td>☀️ <strong>6月</strong></td>
+      <td>June Bank Holiday 6/1(一) → 自然三连休</td>
+      <td><strong>0天</strong></td>
+      <td><strong>3天</strong></td>
+    </tr>
+    <tr>
+      <td>🏖️ <strong>8月</strong></td>
+      <td>Aug Bank Holiday 8/3(一) → 请 8/4(二)→8/7(五) 4天年假</td>
+      <td><strong>4天</strong></td>
+      <td><strong>9天</strong></td>
+    </tr>
+    <tr>
+      <td>🍂 <strong>10月</strong></td>
+      <td>Oct Bank Holiday 10/26(一) → 请 10/27(二)→10/30(五) 4天年假</td>
+      <td><strong>4天</strong></td>
+      <td><strong>9天</strong></td>
+    </tr>
+    <tr style="background:#fff8e1;">
+      <td>🎄 <strong>12月</strong></td>
+      <td>圣诞季：12/25(五)+12/26(六)+12/28(一)补休<br>→ 请 12/21(一)→12/24(四) 4天年假</td>
+      <td><strong>4天</strong></td>
+      <td><strong>11天 🏆</strong></td>
+    </tr>
+  </table>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>📅 最后更新：2026年6月 · 制作：Claude Code</p>
+  <p>
+    <a href="http://www.gov.cn/zhengce/zhengceku/202511/content_7047091.htm" target="_blank">CN节假日安排通知</a>
+    ·
+    <a href="https://www.citizensinformation.ie/en/employment/employment-rights-and-conditions/leave-and-holidays/public-holidays/" target="_blank">Citizens Information Ireland</a>
+    ·
+    <a href="https://www.ireland.com/en-us/help-and-advice/practical-information/public-holidays/" target="_blank">Ireland.com</a>
+  </p>
+</div>
+
+</div>
+</body>
+</html>
