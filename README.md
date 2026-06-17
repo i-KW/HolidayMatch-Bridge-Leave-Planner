@@ -28,13 +28,17 @@
 
 纯 HTML + CSS，不需要装任何东西，直接浏览器打开对应文件即可。打印友好（浏览器右键自助打印），截图友好，也可以直接当网页看。
 
-## 已收录
+## 已收录多国日历
 
 | 文件 | 国家 | 说明 |
 |------|------|------|
 | `China＆Ireland_HolidayMatch_Calendar.html` | 🇨🇳 中国 · 🇮🇪 爱尔兰 | 含调休补班 + 拼假攻略 |
 | `UK＆Spain_HolidayMatch_Calendar.html` | 🇬🇧 英国 · 🇪🇸 西班牙 | English + Los Puentes Bridge Leave |
 
+## AI SKILL
+● .claude/skills/
+  ├── holiday-match-bridge-leave.md    ← SKILL for Claude Code/openCLAW. English version 
+  └── SKILL Chinese.md                 ← Chinese version
 
 ## PART2: English introduction
 Planning a vacation with friends or family across borders? Tired of hunting down public holiday notices for each country, typing dates into Group Chats that never align, or confusing without visual calendar reference? This project generates HTML calendar that maps workdays and holidays across multiple countries together, nice AI long holiday Bridge Leave Guide.
