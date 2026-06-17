@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Calendar · UK &amp; Spain Holiday Match</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; background:#f5f5f5; color:#333; padding:30px 20px; }
+.container { max-width:860px; margin:0 auto; }
+
+/* Header */
+.header { text-align:center; margin-bottom:30px; }
+.header h1 { font-size:1.8em; margin-bottom:8px; }
+.header .sub { font-size:0.82em; color:#555; line-height:1.8; }
+.header .sub .tag-uk { display:inline-block; background:#e8f5e9; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub .tag-es { display:inline-block; background:#fff3e0; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub .tag-both { display:inline-block; background:#e8e8ff; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub .tag-reg { display:inline-block; background:#fce4ec; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub a { color:#1976d2; text-decoration:none; }
+.header .sub a:hover { text-decoration:underline; }
+
+/* Calendar Table */
+.month { margin-bottom:36px; background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); overflow:hidden; }
+.month-title { text-align:center; padding:14px 10px; font-size:1.15em; font-weight:bold; background:#fafafa; border-bottom:2px solid #eee; }
+.month-title .holiday-note { font-size:0.8em; font-weight:normal; color:#555; display:block; margin-top:4px; }
+.month-title .holiday-note .flag { font-size:1em; font-weight:700; color:#333; }
+table.cal { width:100%; border-collapse:collapse; }
+table.cal th { background:#f0f0f0; padding:8px 4px; font-size:0.85em; text-align:center; border:1px solid #e0e0e0; color:#555; }
+table.cal td { border:1px solid #e0e0e0; text-align:center; vertical-align:top; padding:6px 2px; height:68px; width:14.28%; font-size:0.95em; }
+table.cal td .day { font-size:1.15em; font-weight:500; display:block; margin-bottom:2px; }
+table.cal td .label { font-size:0.68em; display:block; line-height:1.35; color:#555; }
+table.cal td.empty { background:#fafafa; }
+table.cal td.weekend { background:#f8f8ff; }
+table.cal td.uk { background:#e8f5e9; }
+table.cal td.uk .label { color:#2e7d32; font-weight:500; }
+table.cal td.es { background:#fff3e0; }
+table.cal td.es .label { color:#e65100; font-weight:500; }
+table.cal td.both { background:#e8e8ff; }
+table.cal td.both .label { color:#5c6bc0; font-weight:600; }
+table.cal td.regional { background:#fce4ec; }
+table.cal td.regional .label { color:#c62828; font-weight:500; font-size:0.65em; }
+
+/* Summary tables */
+.summary { background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); padding:24px; margin-bottom:36px; }
+.summary h2 { text-align:center; margin-bottom:16px; font-size:1.3em; }
+.summary table.sum { width:100%; border-collapse:collapse; margin-bottom:16px; }
+.summary table.sum th { background:#f5f5f5; padding:8px 10px; text-align:left; border:1px solid #e0e0e0; font-size:0.9em; }
+.summary table.sum td { padding:8px 10px; border:1px solid #e0e0e0; font-size:0.9em; }
+.summary table.sum tr:hover td { background:#fafafa; }
+
+/* Tips */
+.tips { background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); padding:24px; margin-bottom:36px; }
+.tips h2 { text-align:center; margin-bottom:16px; font-size:1.3em; }
+.tips table.tip { width:100%; border-collapse:collapse; }
+.tips table.tip th { background:#f5f5f5; padding:8px 10px; text-align:left; border:1px solid #e0e0e0; font-size:0.9em; }
+.tips table.tip td { padding:8px 10px; border:1px solid #e0e0e0; font-size:0.9em; }
+
+/* Footer */
+.footer { text-align:center; color:#888; font-size:0.85em; padding:20px 0; }
+.footer a { color:#1976d2; text-decoration:none; }
+.footer a:hover { text-decoration:underline; }
+
+@media print {
+  body { background:#fff; padding:15px; }
+  .month { box-shadow:none; border:1px solid #ddd; page-break-inside:avoid; }
+  .header .sub a { color:#333; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>📅 2026 UK &amp; Spain Work &amp; Holiday Calendar</h1>
+  <p style="font-size:1.15em;color:#666;margin:4px 0 10px;">Calendario Laboral 2026 · Reino Unido y España</p>
+  <div class="sub">
+    <span class="tag-uk">🟢 UK Bank Holiday</span>
+    <span class="tag-es">🟠 Spain National Holiday</span>
+    <span class="tag-both">🟣 Both Countries</span>
+    <span class="tag-reg">🔴 Regional Holiday (Spain)</span>
+    <br>
+    Sources:
+    <a href="https://www.gov.uk/bank-holidays" target="_blank">GOV.UK</a>
+    ·
+    <a href="https://administracion.gob.es/pag_Home/en/dam/jcr:06b4b4ab-b5fa-4d05-badf-a763eb094c3d/Calendario_Laboral2026.pdf" target="_blank">BOE Spain</a>
+    ·
+    <a href="https://www.timeanddate.com/holidays/spain/2026" target="_blank">timeanddate.com</a>
+  </div>
+</div>
+
+<!-- ====== January ====== -->
+<div class="month">
+  <div class="month-title">January 2026 <span class="holiday-note"><strong class="flag">UK</strong> New Year's Day 1/1 🟢 &emsp; <strong class="flag">ES</strong> Día de Reyes 1/6 🟠</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="both"><div class="day">1</div><div class="label">🎉New Year / Año Nuevo</div></td>
+      <td><div class="day">2</div></td>
+      <td class="weekend"><div class="day">3</div></td>
+      <td class="weekend"><div class="day">4</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">5</div></td>
+      <td class="es"><div class="day">6</div><div class="label">👑Día de Reyes</div></td>
+      <td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td>
+      <td class="weekend"><div class="day">10</div></td>
+      <td class="weekend"><div class="day">11</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">12</div></td><td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td>
+      <td class="weekend"><div class="day">17</div></td><td class="weekend"><div class="day">18</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td>
+      <td class="weekend"><div class="day">24</div></td><td class="weekend"><div class="day">25</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="weekend"><div class="day">31</div></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== February ====== -->
+<div class="month">
+  <div class="month-title">February 2026 <span class="holiday-note">📌 No public holidays this month</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="weekend"><div class="day">1</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td><td><div class="day">6</div></td>
+      <td class="weekend"><div class="day">7</div></td><td class="weekend"><div class="day">8</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td>
+      <td class="weekend"><div class="day">14</div></td><td class="weekend"><div class="day">15</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td>
+      <td class="weekend"><div class="day">21</div></td><td class="weekend"><div class="day">22</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td>
+      <td class="weekend"><div class="day">28</div></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== March ====== -->
+<div class="month">
+  <div class="month-title">March 2026 <span class="holiday-note">📌 No public holidays this month</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="weekend"><div class="day">1</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td><td><div class="day">6</div></td>
+      <td class="weekend"><div class="day">7</div></td><td class="weekend"><div class="day">8</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td>
+      <td class="weekend"><div class="day">14</div></td><td class="weekend"><div class="day">15</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td>
+      <td class="weekend"><div class="day">21</div></td><td class="weekend"><div class="day">22</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td>
+      <td class="weekend"><div class="day">28</div></td><td class="weekend"><div class="day">29</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">30</div></td><td><div class="day">31</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== April ====== -->
+<div class="month">
+  <div class="month-title">April 2026 <span class="holiday-note"><strong class="flag">UK</strong> Good Friday 4/3 🟢 · Easter Monday 4/6 🟢 &emsp; <strong class="flag">ES</strong> Jueves Santo 4/2 🔴 · Viernes Santo 4/3 🟠 &emsp; ➡ 4/3 🟣 &amp; 4/6 🟣</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td>
+      <td><div class="day">1</div></td>
+      <td class="regional"><div class="day">2</div><div class="label">Jueves Santo *</div></td>
+      <td class="both"><div class="day">3</div><div class="label">✝️Good Friday / Viernes Santo</div></td>
+      <td class="weekend"><div class="day">4</div></td>
+      <td class="weekend"><div class="day">5</div></td>
+    </tr>
+    <tr>
+      <td class="both"><div class="day">6</div><div class="label">🐣Easter Monday / Lunes de Pascua</div></td>
+      <td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td>
+      <td class="weekend"><div class="day">11</div></td><td class="weekend"><div class="day">12</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td>
+      <td class="weekend"><div class="day">18</div></td><td class="weekend"><div class="day">19</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td>
+      <td class="weekend"><div class="day">25</div></td><td class="weekend"><div class="day">26</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== May ====== -->
+<div class="month">
+  <div class="month-title">May 2026 <span class="holiday-note"><strong class="flag">UK</strong> Early May BH 5/4 🟢 · Spring BH 5/25 🟢 &emsp; <strong class="flag">ES</strong> Fiesta del Trabajo 5/1 🟠</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="es"><div class="day">1</div><div class="label">💪Fiesta del Trabajo</div></td>
+      <td class="weekend"><div class="day">2</div></td>
+      <td class="weekend"><div class="day">3</div></td>
+    </tr>
+    <tr>
+      <td class="uk"><div class="day">4</div><div class="label">🌸Early May BH</div></td>
+      <td><div class="day">5</div></td><td><div class="day">6</div></td><td><div class="day">7</div></td><td><div class="day">8</div></td>
+      <td class="weekend"><div class="day">9</div></td><td class="weekend"><div class="day">10</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td>
+      <td class="weekend"><div class="day">16</div></td><td class="weekend"><div class="day">17</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td>
+      <td class="weekend"><div class="day">23</div></td><td class="weekend"><div class="day">24</div></td>
+    </tr>
+    <tr>
+      <td class="uk"><div class="day">25</div><div class="label">🌼Spring BH</div></td>
+      <td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td>
+      <td class="weekend"><div class="day">30</div></td><td class="weekend"><div class="day">31</div></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== June ====== -->
+<div class="month">
+  <div class="month-title">June 2026 <span class="holiday-note">📌 No public holidays this month</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td>
+      <td class="weekend"><div class="day">6</div></td><td class="weekend"><div class="day">7</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td>
+      <td class="weekend"><div class="day">13</div></td><td class="weekend"><div class="day">14</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td><td><div class="day">19</div></td>
+      <td class="weekend"><div class="day">20</div></td><td class="weekend"><div class="day">21</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td>
+      <td class="weekend"><div class="day">27</div></td><td class="weekend"><div class="day">28</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== July ====== -->
+<div class="month">
+  <div class="month-title">July 2026 <span class="holiday-note">📌 No public holidays this month</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td>
+      <td class="weekend"><div class="day">4</div></td><td class="weekend"><div class="day">5</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">6</div></td><td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td>
+      <td class="weekend"><div class="day">11</div></td><td class="weekend"><div class="day">12</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td>
+      <td class="weekend"><div class="day">18</div></td><td class="weekend"><div class="day">19</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td>
+      <td class="weekend"><div class="day">25</div></td><td class="weekend"><div class="day">26</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td><td><div class="day">31</div></td>
+      <td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== August ====== -->
+<div class="month">
+  <div class="month-title">August 2026 <span class="holiday-note"><strong class="flag">UK</strong> Summer Bank Holiday 8/31 🟢 &emsp; <strong class="flag">ES</strong> Asunción de la Virgen 8/15 🟠</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="weekend"><div class="day">1</div></td>
+      <td class="weekend"><div class="day">2</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td><td><div class="day">6</div></td><td><div class="day">7</div></td>
+      <td class="weekend"><div class="day">8</div></td><td class="weekend"><div class="day">9</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td><td><div class="day">14</div></td>
+      <td class="es weekend"><div class="day">15</div><div class="label">🕊️Asunción Virgen</div></td>
+      <td class="weekend"><div class="day">16</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">17</div></td><td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td>
+      <td class="weekend"><div class="day">22</div></td><td class="weekend"><div class="day">23</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td>
+      <td class="weekend"><div class="day">29</div></td><td class="weekend"><div class="day">30</div></td>
+    </tr>
+    <tr>
+      <td class="uk"><div class="day">31</div><div class="label">🏖️Summer BH</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== September ====== -->
+<div class="month">
+  <div class="month-title">September 2026 <span class="holiday-note">📌 No public holidays this month</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td>
+      <td class="weekend"><div class="day">5</div></td><td class="weekend"><div class="day">6</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td>
+      <td class="weekend"><div class="day">12</div></td><td class="weekend"><div class="day">13</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td>
+      <td class="weekend"><div class="day">19</div></td><td class="weekend"><div class="day">20</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td>
+      <td class="weekend"><div class="day">26</div></td><td class="weekend"><div class="day">27</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== October ====== -->
+<div class="month">
+  <div class="month-title">October 2026 <span class="holiday-note"><strong class="flag">ES</strong> Fiesta Nacional de España 10/12 🟠</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td>
+      <td class="weekend"><div class="day">3</div></td><td class="weekend"><div class="day">4</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">5</div></td><td><div class="day">6</div></td><td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td>
+      <td class="weekend"><div class="day">10</div></td><td class="weekend"><div class="day">11</div></td>
+    </tr>
+    <tr>
+      <td class="es"><div class="day">12</div><div class="label">🇪🇸Fiesta Nacional</div></td>
+      <td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td>
+      <td class="weekend"><div class="day">17</div></td><td class="weekend"><div class="day">18</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td>
+      <td class="weekend"><div class="day">24</div></td><td class="weekend"><div class="day">25</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="weekend"><div class="day">31</div></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== November ====== -->
+<div class="month">
+  <div class="month-title">November 2026 <span class="holiday-note"><strong class="flag">ES</strong> Día de Todos los Santos 11/1 🟠 (observed Mon 11/2 in most regions)</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="es weekend"><div class="day">1</div><div class="label">🕯️Todos los Santos</div></td>
+    </tr>
+    <tr>
+      <td class="es"><div class="day">2</div><div class="label">🕯️Todos los Santos (sub.)</div></td>
+      <td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td><td><div class="day">6</div></td>
+      <td class="weekend"><div class="day">7</div></td><td class="weekend"><div class="day">8</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td>
+      <td class="weekend"><div class="day">14</div></td><td class="weekend"><div class="day">15</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td>
+      <td class="weekend"><div class="day">21</div></td><td class="weekend"><div class="day">22</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td>
+      <td class="weekend"><div class="day">28</div></td><td class="weekend"><div class="day">29</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== December ====== -->
+<div class="month">
+  <div class="month-title">December 2026 <span class="holiday-note"><strong class="flag">UK</strong> Christmas 12/25 🟢 · Boxing Day 12/28 (sub.) 🟢 &emsp; <strong class="flag">ES</strong> Constitución 12/7 🟠 · Inmaculada 12/8 🟠 · Navidad 12/25 🟠</span></div>
+  <table class="cal">
+    <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+    <tr>
+      <td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td>
+      <td class="weekend"><div class="day">5</div></td>
+      <td class="es weekend"><div class="day">6</div><div class="label">📜Día Constitución</div></td>
+    </tr>
+    <tr>
+      <td class="es"><div class="day">7</div><div class="label">📜Constitución (sub.)</div></td>
+      <td class="es"><div class="day">8</div><div class="label">🕊️Inmaculada</div></td>
+      <td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td>
+      <td class="weekend"><div class="day">12</div></td><td class="weekend"><div class="day">13</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td>
+      <td class="weekend"><div class="day">19</div></td><td class="weekend"><div class="day">20</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td>
+      <td class="both"><div class="day">25</div><div class="label">🎄Christmas / Navidad</div></td>
+      <td class="uk weekend"><div class="day">26</div><div class="label">🎁Boxing Day</div></td>
+      <td class="weekend"><div class="day">27</div></td>
+    </tr>
+    <tr>
+      <td class="uk"><div class="day">28</div><div class="label">🎁Boxing Day (sub.)</div></td>
+      <td><div class="day">29</div></td><td><div class="day">30</div></td><td><div class="day">31</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== Summary ====== -->
+<div class="summary">
+  <h2>📊 Annual Holiday Summary</h2>
+
+  <h3 style="margin:12px 0 8px;font-size:1.05em;">🇬🇧 UK — Bank Holidays 2026 (England &amp; Wales)</h3>
+  <table class="sum">
+    <tr><th>Holiday</th><th>Date</th><th>Day</th><th>Note</th></tr>
+    <tr><td>🎉 New Year's Day</td><td>1 January</td><td>Thursday</td><td></td></tr>
+    <tr><td>✝️ Good Friday</td><td>3 April</td><td>Friday</td><td></td></tr>
+    <tr><td>🐣 Easter Monday</td><td>6 April</td><td>Monday</td><td></td></tr>
+    <tr><td>🌸 Early May Bank Holiday</td><td>4 May</td><td>Monday</td><td></td></tr>
+    <tr><td>🌼 Spring Bank Holiday</td><td>25 May</td><td>Monday</td><td></td></tr>
+    <tr><td>🏖️ Summer Bank Holiday</td><td>31 August</td><td>Monday</td><td></td></tr>
+    <tr><td>🎄 Christmas Day</td><td>25 December</td><td>Friday</td><td></td></tr>
+    <tr><td>🎁 Boxing Day (substitute)</td><td>28 December</td><td>Monday</td><td>26 Dec falls on Sat → substitute</td></tr>
+    <tr style="background:#f9f9f9;"><td colspan="2"><strong>Total</strong></td><td><strong>8 days</strong></td><td>No makeup work days needed ✅</td></tr>
+  </table>
+
+  <h3 style="margin:12px 0 8px;font-size:1.05em;">🇪🇸 Spain — National Holidays 2026</h3>
+  <table class="sum">
+    <tr><th>#</th><th>Holiday</th><th>Date</th><th>Day</th></tr>
+    <tr><td>1</td><td>🎉 Año Nuevo (New Year's Day)</td><td>1 January</td><td>Thursday</td></tr>
+    <tr><td>2</td><td>👑 Día de Reyes (Three Kings' Day)</td><td>6 January</td><td>Tuesday</td></tr>
+    <tr><td>3</td><td>✝️ Viernes Santo (Good Friday)</td><td>3 April</td><td>Friday</td></tr>
+    <tr><td>4</td><td>💪 Fiesta del Trabajo (Labour Day)</td><td>1 May</td><td>Friday</td></tr>
+    <tr><td>5</td><td>🕊️ Asunción de la Virgen (Assumption)</td><td>15 August</td><td>Saturday</td></tr>
+    <tr><td>6</td><td>🇪🇸 Fiesta Nacional de España (Hispanic Day)</td><td>12 October</td><td>Monday</td></tr>
+    <tr><td>7</td><td>🕯️ Día de Todos los Santos (All Saints')</td><td>1 November</td><td>Sunday → Mon 2 Nov in most regions</td></tr>
+    <tr><td>8</td><td>📜 Día de la Constitución (Constitution Day)</td><td>6 December</td><td>Sunday → Mon 7 Dec in most regions</td></tr>
+    <tr><td>9</td><td>🕊️ Inmaculada Concepción (Immaculate Conception)</td><td>8 December</td><td>Tuesday</td></tr>
+    <tr><td>10</td><td>🎄 Navidad (Christmas Day)</td><td>25 December</td><td>Friday</td></tr>
+    <tr><td colspan="3" style="text-align:right;font-style:italic;color:#888;">+ Regional holidays (see below)</td><td></td></tr>
+  </table>
+
+  <h3 style="margin:12px 0 8px;font-size:1.05em;">🔴 Regional Holidays (Spain — varies by region)</h3>
+  <table class="sum">
+    <tr><th>Holiday</th><th>Date</th><th>Day</th><th>Observed in</th></tr>
+    <tr><td>✝️ Jueves Santo (Maundy Thursday)</td><td>2 April</td><td>Thursday</td><td>All regions except Catalonia &amp; Valencia</td></tr>
+    <tr><td>🐣 Lunes de Pascua (Easter Monday)</td><td>6 April</td><td>Monday</td><td>Catalonia, Valencia, Balearic Islands, Navarre, Basque Country, La Rioja</td></tr>
+    <tr><td>🛡️ Día de San José (St. Joseph's Day)</td><td>19 March</td><td>Thursday</td><td>Valencia, Murcia, Navarre, Extremadura (regional)</td></tr>
+    <tr><td>🐂 Día de Santiago (St. James the Apostle)</td><td>25 July</td><td>Saturday</td><td>Galicia, Basque Country, Cantabria, Madrid</td></tr>
+    <tr><td>🍂 Día de la Hispanidad → varies</td><td>12 Oct</td><td>Monday</td><td>National (already counted above)</td></tr>
+  </table>
+
+  <h3 style="margin:12px 0 8px;font-size:1.05em;">🟣 Overlapping Holidays — Both Countries Off</h3>
+  <table class="sum">
+    <tr><th>Date</th><th>UK Holiday</th><th>Spain Holiday</th></tr>
+    <tr><td><strong>1 Jan (Thu)</strong></td><td>🎉 New Year's Day</td><td>🎉 Año Nuevo</td></tr>
+    <tr><td><strong>3 Apr (Fri)</strong></td><td>✝️ Good Friday</td><td>✝️ Viernes Santo</td></tr>
+    <tr><td><strong>6 Apr (Mon)</strong></td><td>🐣 Easter Monday</td><td>🐣 Lunes de Pascua (regional)</td></tr>
+    <tr><td><strong>25 Dec (Fri)</strong></td><td>🎄 Christmas Day</td><td>🎄 Navidad</td></tr>
+  </table>
+  <p style="font-size:0.85em;color:#888;margin-top:6px;">💡 4 days where both countries share a public holiday — great for cross-team scheduling!</p>
+</div>
+
+<!-- ====== Tips ====== -->
+<div class="tips">
+  <h2>💡 Leave Planning Tips</h2>
+  <p style="text-align:center;color:#666;margin-bottom:16px;font-size:0.9em;">"Puente" or "Bridge" — use annual leave to connect holidays with weekends for longer breaks</p>
+
+  <h3 style="margin:16px 0 10px;font-size:1.05em;color:#2e7d32;">🇬🇧 UK Leave Tips</h3>
+  <p style="font-size:0.85em;color:#666;margin-bottom:10px;">Maximise UK bank holidays with strategic annual leave</p>
+  <table class="tip">
+    <tr><th>Period</th><th>How to Play It</th><th>Leave</th><th>Total Days Off</th></tr>
+    <tr>
+      <td>🎄 <strong>Christmas &amp; New Year</strong></td>
+      <td>Christmas 25 Dec (Fri) + Boxing Day sub. 28 Dec (Mon)<br>→ Take 29 Dec (Tue) – 31 Dec (Thu) 3 days</td>
+      <td><strong>3 days</strong></td>
+      <td><strong>9 days</strong></td>
+    </tr>
+    <tr style="background:#fff8e1;">
+      <td>🌸 <strong>May Double-Header</strong></td>
+      <td>Early May BH 4 May (Mon) + Spring BH 25 May (Mon)<br>→ Take 5 May–8 May (4 days) + 26 May–29 May (4 days) separately</td>
+      <td><strong>4+4 days</strong></td>
+      <td><strong>9+9 days</strong></td>
+    </tr>
+    <tr style="background:#fff8e1;">
+      <td>🐣 <strong>Easter</strong></td>
+      <td>Good Fri 3 Apr (Fri) + Easter Mon 6 Apr (Mon)<br>→ Add 7 Apr–10 Apr (4 days) for Spring break</td>
+      <td><strong>4 days</strong></td>
+      <td><strong>10 days</strong></td>
+    </tr>
+    <tr>
+      <td>🏖️ <strong>Summer</strong></td>
+      <td>Summer BH 31 Aug (Mon)<br>→ Take 1 Sep–4 Sep (4 days) for a late-summer break</td>
+      <td><strong>4 days</strong></td>
+      <td><strong>9 days</strong></td>
+    </tr>
+  </table>
+
+  <h3 style="margin:24px 0 10px;font-size:1.05em;color:#e65100;">🇪🇸 Spain Leave Hacks — "Los Puentes"</h3>
+  <p style="font-size:0.85em;color:#666;margin-bottom:10px;">Spain's holiday layout is perfect for "puente" (bridge) strategies</p>
+  <table class="tip">
+    <tr><th>Period</th><th>How to Play It</th><th>Leave</th><th>Total Days Off</th></tr>
+    <tr style="background:#fff8e1;">
+      <td>🎄 <strong>December Mega-Break</strong></td>
+      <td>Constitución (Mon 7 Dec) + Inmaculada (Tue 8 Dec)<br>→ Take 9 Dec–11 Dec (3 days) = 9 days off (Dec 5–13)<br>+ Christmas 25 Dec (Fri)<br>→ Take 21 Dec–24 Dec (4 days) = 7 days off (Dec 21–27)<br>Two separate puentes!</td>
+      <td><strong>7 days</strong></td>
+      <td><strong>16 days</strong></td>
+    </tr>
+    <tr>
+      <td>👑 <strong>January Kings' Puente</strong></td>
+      <td>Reyes 6 Jan (Tue) → Take 5 Jan (Mon) 1 day<br>+ New Year 1 Jan (Thu) already a holiday</td>
+      <td><strong>1 day</strong></td>
+      <td><strong>5 days</strong></td>
+    </tr>
+    <tr>
+      <td>✝️ <strong>Semana Santa (Easter Week)</strong></td>
+      <td>Jueves Santo 2 Apr (Thu) + Viernes Santo 3 Apr (Fri)<br>→ Add 6 Apr (Mon if regional) + 7–10 Apr (4 days) for full break</td>
+      <td><strong>4–5 days</strong></td>
+      <td><strong>10–11 days</strong></td>
+    </tr>
+    <tr>
+      <td>💪 <strong>Labour Day Puente</strong></td>
+      <td>Fiesta del Trabajo 1 May (Fri) → natural weekend +<br>Take 4 May–5 May (2 days) to bridge to Wed</td>
+      <td><strong>2 days</strong></td>
+      <td><strong>5 days</strong></td>
+    </tr>
+    <tr>
+      <td>🇪🇸 <strong>October National Day</strong></td>
+      <td>Fiesta Nacional 12 Oct (Mon) → natural 3-day weekend<br>Add 13 Oct–16 Oct (4 days) for a full week</td>
+      <td><strong>4 days</strong></td>
+      <td><strong>9 days</strong></td>
+    </tr>
+    <tr>
+      <td>🕯️ <strong>All Saints' Puente</strong></td>
+      <td>2 Nov (Mon) — Most regions observe Todos los Santos on Monday<br>Natural 3-day weekend</td>
+      <td><strong>0 days</strong></td>
+      <td><strong>3 days</strong></td>
+    </tr>
+  </table>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>📅 Last updated: June 2026 · Made with Claude Code</p>
+  <p>
+    <a href="https://www.gov.uk/bank-holidays" target="_blank">GOV.UK — Bank Holidays</a>
+    ·
+    <a href="https://administracion.gob.es/pag_Home/en/dam/jcr:06b4b4ab-b5fa-4d05-badf-a763eb094c3d/Calendario_Laboral2026.pdf" target="_blank">BOE Spain — Official Work Calendar 2026</a>
+    ·
+    <a href="https://www.timeanddate.com/holidays/spain/2026" target="_blank">timeanddate.com — Spain Holidays 2026</a>
+  </p>
+  <p style="margin-top:4px;color:#aaa;font-size:0.85em;">
+    * Jueves Santo (Maundy Thursday) is a regional holiday — observed in most of Spain except Catalonia and Valencia.<br>
+     Regional holiday observance varies by autonomous community. Check your local calendar.
+  </p>
+</div>
+
+</div>
+</body>
+</html>
