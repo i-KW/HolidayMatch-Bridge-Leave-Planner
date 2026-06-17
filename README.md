@@ -21,7 +21,8 @@
 
 打印友好,截图友好,适合直接丢到群里或家庭共享文档里一起看。(good for Print and Screenshot and Sharing/Co-Work)
 
-<img width="1161" height="750" alt="image" src="https://github.com/user-attachments/assets/9874d77e-d3e4-49ce-b990-41c93f540014" />
+<img width="1070" height="751" alt="image" src="https://github.com/user-attachments/assets/784e5e8c-cd32-4767-aaa8-028ad26e1d7c" />
+
 
 ## 技术栈
 
