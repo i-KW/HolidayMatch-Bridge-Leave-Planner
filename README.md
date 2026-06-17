@@ -1,8 +1,8 @@
 # HolidayMatch · Bridge Leave Planner 🗺️
-跨国朋友/家庭一起规划假期？各自去找放假通知很麻烦？群里一个个日期打字各自的假期费时间还对不上号？不同国家的日历、假期、调休列在一起没有日历让人眼花缭乱？打印友好,截图友好,共享和协作的利器!
-这个项目致力于把多个国家的工作日和节假日按日历格式对照做成了一份 HTML，附赠AI的拼假方案。我总结了SKILL,沉淀了AI制作跨国日历的SOP,设计样式,生成拼假方案的思路等,可以自动化生成:最新时间\不同国家组合的协作日历,考虑了不同国家规则差异（中国的调休、英国 substitute和bank holiday、西班牙的 puente）,多语言,时间参数等真实和边界情况!
-Planning a vacation with friends or family across borders? Tired of hunting down public holiday notices for each country, typing dates into Group Chats that never align, or juggling different national arrangement with no visual calendar reference? This project generates a unified HTML calendar that maps workdays and holidays across multiple countries togethe, nice AI long holiday Bridge Leave Guide.
-I wirite SKILL for AI, refined the SOP for AI-generated cross-border calendars, designed templates, and strategies for generating Bridge Leave Guide. SKILL help automatically generate collaborative calendars with the latest time and various country combinations, including differences rules across different countries, real-world and boundary conditions such as multiple languages and time parameters!
+跨国朋友/家庭一起规划假期？各自去找放假通知很麻烦？群里一个个日期打字费时间还对不上号？不同国家的日历、假期、调休列在一起没有日历让人眼花缭乱？我和你都需要这个打印友好,截图友好,共享和协作的利器!这个项目致力于把多个国家的工作日和节假日按日历格式对照做成了一份 HTML，附赠AI的拼假方案。  
+我给AI总结了**SKILL**,沉淀了AI制作跨国日历的SOP,设计样式,生成拼假方案的思路等,可以自动化生成:最新时间\不同国家组合的协作日历,考虑了不同国家规则差异（中国的调休、英国 substitute和bank holiday、西班牙的 puente）,多语言,时间参数等真实和边界情况!    
+Planning a vacation with friends or family across borders? Tired of hunting down public holiday notices for each country, typing dates into Group Chats that never align, or confusing without visual calendar reference? This project generates HTML calendar that maps workdays and holidays across multiple countries together, nice AI long holiday Bridge Leave Guide.
+I wirite **SKILL for AI**, refined the SOP for AI-generated cross-border calendars, designed templates, and strategies for generating Bridge Leave Guide. SKILL help automatically generate collaborative calendars with the latest time and various country combinations, including differences rules across different countries, real-world and boundary conditions such as multiple languages and time parameters!
 
 <img width="1185" height="738" alt="image" src="https://github.com/user-attachments/assets/24905fbf-96d6-49aa-bfea-ac8630237707" />
 
