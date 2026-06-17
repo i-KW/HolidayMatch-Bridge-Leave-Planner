@@ -1,6 +1,8 @@
 # HolidayMatch · Bridge Leave Planner 🗺️
-跨国朋友/家庭一起规划假期？各自去找放假通知很麻烦？群里一个个日期打字各自的假期费时间还对不上号？不同国家的日历、假期、调休列在一起没有日历让人眼花缭乱？
-这个项目致力于把多个国家的工作日和节假日按日历格式对照做成了一份 HTML，AI 还顺手算好了拼假方案（Bridge Leave Guide）。
+Planning holidays with friends or family across different countries?  
+Digging through everyone's holiday notices is a hassle. Typing dates one by one in a group chat is slow and error-prone. Putting multiple countries' calendars, holidays, and adjusted workdays side by side without a proper calendar view is just overwhelming.
+
+This project pairs two countries' work and holiday calendars into a single HTML page, with AI-generated bridge leave plans to help you maximise your time off.
 
 ## 怎么用
 
