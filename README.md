@@ -1,6 +1,6 @@
 # HolidayMatch · Bridge Leave Planner 🗺️
 跨国朋友/家庭一起规划假期：麻烦在各自去找放假通知？在群里打一个个日期还对不上星期？不同国家的日历、假期混在一起、没有可视化参考让人眼花缭乱？这个项目致力于把多个国家的工作日和节假日按日历格式对照做成了一份好看的网页，附赠AI的拼假方案帮你请3休11，打印友好,截图友好,协作利器! HolidayMatch不是"AI生成日历"，是"自动化,多语言,本地化的跨国假期对齐规划家"——有简洁高效的SKILL自动化,防幻觉,产品和边界的设计!(English introduction on PART2)  
-## 🧠 产品思维 & 防幻觉设计 Product senese＆Anti-Hallucination
+## 🧠 产品思维 & 防幻觉设计
 | 层级 | 设计点 | 核心机制 | 防幻觉策略 | 用户价值 |
 |:---|:---|:---|:---|:---|
 | **⏰ 时间感知** | 动态年份搜索和判断 | 识别"下周出行"等模糊表述；≤1月默认今年；≥2月主动询问；12月提示跨年 | 避免LLM写死参数,遵循历史数据缺乏时间感 | 对齐用户需求和日程规划场景，减少无效输出 |
@@ -34,12 +34,12 @@
 | `China＆Ireland_HolidayMatch_Calendar.html` | 🇨🇳 中国 · 🇮🇪 爱尔兰 | 含调休补班 + 拼假攻略 |
 | `UK＆Spain_HolidayMatch_Calendar.html` | 🇬🇧 英国 · 🇪🇸 西班牙 | English + Los Puentes Bridge Leave |
 
-请给星星⭐支持,可提issues需求来制作更多国家的日历。感谢Please provide me Star⭐ and create issues for HolidayMatch calendars for more countries. THX
 
-
+## PART2: English introduction
 Planning a vacation with friends or family across borders? Tired of hunting down public holiday notices for each country, typing dates into Group Chats that never align, or confusing without visual calendar reference? This project generates HTML calendar that maps workdays and holidays across multiple countries together, nice AI long holiday Bridge Leave Guide.
 I wirite **SKILL for AI**, refined the SOP for AI-generated cross-border calendars, designed templates, and strategies for generating Bridge Leave Guide. SKILL help automatically generate collaborative calendars with the latest time and various country combinations, including differences rules across different countries, real-world and boundary conditions such as multiple languages and time parameters!
 
+## 🧠 Product senese＆Anti-Hallucination
 | Tier | Design Principle | Core Mechanism | Anti-Hallucination Strategy | User Value |
 |------|------------------|----------------|----------------------------|------------|
 | ⏰ **Temporal Awareness** | Dynamic year inference & search | Resolves fuzzy expressions like "travel next week"; defaults to current year if ≤1 month away, proactively asks if ≥2 months; prompts for year-crossing in December | Prevents LLMs from hardcoding fixed year parameters | Aligns with real-world planning scenarios, reduces invalid output |
@@ -47,4 +47,6 @@ I wirite **SKILL for AI**, refined the SOP for AI-generated cross-border calenda
 | 🌍 **Special Rules** | Per-country boundary condition library | China: exchanged workdays/lunar holiday; UK: bank holiday deferrals; Islamic: floating festivals; Japan: Golden Week; Spain: regional variations, etc. | Covers non-standard scenarios with localized special rules for each country | Real-world applicability, solves localized edge cases across jurisdictions |
 | ⚡ **Parallel Architecture** | Independent parallel retrieval per country; source-isolated querying | Concurrent queries for each country, holiday info, and temporal data from multiple sources | Cross-validation via multi-source verification | 2× speed, ↓ context interference, ↑ accuracy |
 | 🔍 **Verification Fallback** | Confidence scoring + source transparency | Validates source confidence, cross-checks multiple sources, proactively flags AI-generated content | Does not feign certainty; honestly exposes boundaries | Warns users of AI-generated and error-prone scenarios |
-| 🌸 **Premium Features** *(WIP)* | Export, sharing, rich & customizable styling | One-click export to Feishu/Lark sheets, PDF, images; rich media styling like Notion; custom background images |*(wait for develop)*| Facilitates sharing and viral collaboration; delivers emotional design value |
+| 🌸 **Premium Features** *(WIP)* | Export, sharing, rich & customizable styling | One-click export to Feishu/Lark sheets, PDF, images; rich media styling like Notion; custom background images |*(wait for develop)*| Facilitates sharing and viral collaboration; delivers emotional design value |  
+
+请给星星⭐支持,可提issues需求来制作更多国家的日历。感谢Please provide me Star⭐ and create issues for HolidayMatch calendars for more countries. THX
