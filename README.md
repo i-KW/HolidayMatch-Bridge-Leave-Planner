@@ -1,5 +1,5 @@
 # HolidayMatch · Bridge Leave Planner 🗺️
-跨国朋友/家庭一起规划假期：麻烦在各自去找放假通知？在群里打一个个日期还对不上星期？不同国家的日历、假期混在一起、没有可视化参考让人眼花缭乱？这个项目致力于把多个国家的工作日和节假日按日历格式对照做成了一份好看的网页，附赠AI的拼假方案帮你请3休11，打印友好,截图友好,协作利器! HolidayMatch不是"AI生成日历"，是"自动化,多语言,本地化的跨国假期对齐规划家"——有简洁高效的SKILL自动化,防幻觉,产品和边界的设计!(English introduction on PART2)  
+跨国朋友/家庭一起规划假期：各自去找各国放假通知的麻烦？在群里敲一个个日期还对不上星期？不同国家的日历、假期混在一起、没有可视化参考让人眼花缭乱？这个项目致力于把多个国家的工作日和节假日按日历格式对照做成了一份好看的网页，附赠AI的拼假方案帮你请3休11，打印友好,截图友好,协作利器! HolidayMatch不是"AI生成日历"，是"自动化,多语言,本地化的跨国假期对齐规划家"——有简洁高效的SKILL自动化,防幻觉,产品和边界的设计!(English introduction on PART2)  
 ## 🧠 产品思维 & 防幻觉设计
 | 层级 | 设计点 | 核心机制 | 防幻觉策略 | 用户价值 |
 |:---|:---|:---|:---|:---|
@@ -9,8 +9,14 @@
 | **⚡ 并行架构** | 各国独立并行检索；分源独立检索 | 各国、假期信息 + 时间多源并发并发查询 | 多源交叉验证 | 速度×2，上下文干扰↓，准确性↑ |
 | **🔍 验证兜底** | 置信度标记 + 来源透明 | 确认信息来源置信度，多源对比校验，主动标明AI生成等 | 不伪装确定性，诚实暴露边界 | 提高准确率，提示AI内容和易错场景 |
 | **🌸 增值和设计** | （待开发）导出和分享，丰富和自定义的样式 | 一键导出飞书表格/PDF/图片，富媒体样式如Notion，自定义背景图 | （待开发） | 方便分享和协作裂变，设计的情绪价值 |
+<img width="1239" height="708" alt="image" src="https://github.com/user-attachments/assets/992293e2-0526-4d20-8ed7-2580d14f66c7" />
 
-<img width="1185" height="738" alt="image" src="https://github.com/user-attachments/assets/24905fbf-96d6-49aa-bfea-ac8630237707" />
+<img width="1132" height="776" alt="image" src="https://github.com/user-attachments/assets/676ce14b-f0e3-4b2a-b331-e2e2399d6816" />
+
+## AI SKILL  
+● .claude/skills/  
+├── holiday-match-bridge-leave.md    ← SKILL for Claude Code/openCLAW. English version   
+└── SKILL Chinese.md                 ← Chinese version  
 
 ## 怎么用
 用浏览器打开对应的 HTML 就行。一个页面里：
@@ -19,7 +25,7 @@
 - 全年假日汇总表（Bridge Leave Guide）
 - AI 生成的拼假方案 —— 请几天年假能连成最长假期
 
-打印友好,截图友好,适合直接丢到群里或家庭共享文档里一起看。(good for Print and Screenshot and Sharing/Co-Work)
+打印友好,截图友好,适合直接丢到群里或家庭共享文档里一起看。(Good for Print, Screenshot and Sharing/Co-Work)
 
 <img width="1070" height="751" alt="image" src="https://github.com/user-attachments/assets/784e5e8c-cd32-4767-aaa8-028ad26e1d7c" />
 
@@ -28,15 +34,15 @@
 
 纯 HTML + CSS，不需要装任何东西，直接浏览器打开对应文件即可。打印友好（浏览器右键自助打印），截图友好，也可以直接当网页看。
 
-## 已收录
+## 已收录多国日历
 
 | 文件 | 国家 | 说明 |
 |------|------|------|
 | `China＆Ireland_HolidayMatch_Calendar.html` | 🇨🇳 中国 · 🇮🇪 爱尔兰 | 含调休补班 + 拼假攻略 |
-| `UK＆Spain_HolidayMatch_Calendar.html` | 🇬🇧 英国 · 🇪🇸 西班牙 | English + Los Puentes Bridge Leave |
+| `UK＆Spain_HolidayMatch_Calendar.html` | 🇬🇧 英国 · 🇪🇸 西班牙 | English and Spanish, Los Puentes Bridge Leave |
 
 
-## PART2: English introduction
+# PART2: English introduction
 Planning a vacation with friends or family across borders? Tired of hunting down public holiday notices for each country, typing dates into Group Chats that never align, or confusing without visual calendar reference? This project generates HTML calendar that maps workdays and holidays across multiple countries together, nice AI long holiday Bridge Leave Guide.
 I wirite **SKILL for AI**, refined the SOP for AI-generated cross-border calendars, designed templates, and strategies for generating Bridge Leave Guide. SKILL help automatically generate collaborative calendars with the latest time and various country combinations, including differences rules across different countries, real-world and boundary conditions such as multiple languages and time parameters!
 
