@@ -11,7 +11,12 @@
 | **🌸 增值和设计** | （待开发）导出和分享，丰富和自定义的样式 | 一键导出飞书表格/PDF/图片，富媒体样式如Notion，自定义背景图 | （待开发） | 方便分享和协作裂变，设计的情绪价值 |
 <img width="1239" height="708" alt="image" src="https://github.com/user-attachments/assets/992293e2-0526-4d20-8ed7-2580d14f66c7" />
 
-<img width="1185" height="738" alt="image" src="https://github.com/user-attachments/assets/24905fbf-96d6-49aa-bfea-ac8630237707" />
+<img width="1132" height="776" alt="image" src="https://github.com/user-attachments/assets/676ce14b-f0e3-4b2a-b331-e2e2399d6816" />
+
+## AI SKILL  
+● .claude/skills/  
+├── holiday-match-bridge-leave.md    ← SKILL for Claude Code/openCLAW. English version   
+└── SKILL Chinese.md                 ← Chinese version  
 
 ## 怎么用
 用浏览器打开对应的 HTML 就行。一个页面里：
@@ -20,7 +25,7 @@
 - 全年假日汇总表（Bridge Leave Guide）
 - AI 生成的拼假方案 —— 请几天年假能连成最长假期
 
-打印友好,截图友好,适合直接丢到群里或家庭共享文档里一起看。(good for Print and Screenshot and Sharing/Co-Work)
+打印友好,截图友好,适合直接丢到群里或家庭共享文档里一起看。(Good for Print, Screenshot and Sharing/Co-Work)
 
 <img width="1070" height="751" alt="image" src="https://github.com/user-attachments/assets/784e5e8c-cd32-4767-aaa8-028ad26e1d7c" />
 
@@ -34,12 +39,8 @@
 | 文件 | 国家 | 说明 |
 |------|------|------|
 | `China＆Ireland_HolidayMatch_Calendar.html` | 🇨🇳 中国 · 🇮🇪 爱尔兰 | 含调休补班 + 拼假攻略 |
-| `UK＆Spain_HolidayMatch_Calendar.html` | 🇬🇧 英国 · 🇪🇸 西班牙 | English + Los Puentes Bridge Leave |
+| `UK＆Spain_HolidayMatch_Calendar.html` | 🇬🇧 英国 · 🇪🇸 西班牙 | English and Spanish, Los Puentes Bridge Leave |
 
-## AI SKILL  
-● .claude/skills/  
-├── holiday-match-bridge-leave.md    ← SKILL for Claude Code/openCLAW. English version   
-└── SKILL Chinese.md                 ← Chinese version
 
 # PART2: English introduction
 Planning a vacation with friends or family across borders? Tired of hunting down public holiday notices for each country, typing dates into Group Chats that never align, or confusing without visual calendar reference? This project generates HTML calendar that maps workdays and holidays across multiple countries together, nice AI long holiday Bridge Leave Guide.
