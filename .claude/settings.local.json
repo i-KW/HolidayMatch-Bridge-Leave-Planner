@@ -51,7 +51,8 @@
       "Bash(GIT_TRACE=1 git push origin master)",
       "Bash(git config *)",
       "Bash(gh auth *)",
-      "Bash(gh push *)"
+      "Bash(gh push *)",
+      "Bash(git update-index *)"
     ]
   }
 }
