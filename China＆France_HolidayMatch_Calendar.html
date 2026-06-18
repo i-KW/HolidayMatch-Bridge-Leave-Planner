@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027 日历 · 中国 &amp; 法国假期对照</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; background:#f5f5f5; color:#333; padding:30px 20px; }
+.container { max-width:860px; margin:0 auto; }
+
+/* Header */
+.header { text-align:center; margin-bottom:30px; }
+.header h1 { font-size:1.8em; margin-bottom:8px; }
+.header .sub { font-size:0.82em; color:#555; line-height:1.8; }
+.header .sub .tag-cn { display:inline-block; background:#e8f5e9; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub .tag-fr { display:inline-block; background:#e3f2fd; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub .tag-both { display:inline-block; background:#e8e8ff; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub .tag-reg { display:inline-block; background:#fce4ec; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub .tag-pend { display:inline-block; background:#fff8e1; border:1px dashed #f9a825; padding:2px 10px; border-radius:4px; margin:2px 4px; }
+.header .sub a { color:#1976d2; text-decoration:none; }
+.header .sub a:hover { text-decoration:underline; }
+
+/* Calendar Table */
+.month { margin-bottom:36px; background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); overflow:hidden; }
+.month-title { text-align:center; padding:14px 10px; font-size:1.15em; font-weight:bold; background:#fafafa; border-bottom:2px solid #eee; }
+.month-title .holiday-note { font-size:0.8em; font-weight:normal; color:#555; display:block; margin-top:4px; }
+.month-title .holiday-note .flag { font-size:1em; font-weight:700; color:#333; }
+table.cal { width:100%; border-collapse:collapse; }
+table.cal th { background:#f0f0f0; padding:8px 4px; font-size:0.85em; text-align:center; border:1px solid #e0e0e0; color:#555; }
+table.cal td { border:1px solid #e0e0e0; text-align:center; vertical-align:top; padding:6px 2px; height:68px; width:14.28%; font-size:0.95em; }
+table.cal td .day { font-size:1.15em; font-weight:500; display:block; margin-bottom:2px; }
+table.cal td .label { font-size:0.68em; display:block; line-height:1.35; color:#555; }
+table.cal td.empty { background:#fafafa; }
+table.cal td.weekend { background:#f8f8ff; }
+table.cal td.cn { background:#e8f5e9; }
+table.cal td.cn .label { color:#2e7d32; font-weight:500; }
+table.cal td.fr { background:#e3f2fd; }
+table.cal td.fr .label { color:#1565c0; font-weight:500; }
+table.cal td.both { background:#e8e8ff; }
+table.cal td.both .label { color:#5c6bc0; font-weight:600; }
+table.cal td.regional { background:#fce4ec; }
+table.cal td.regional .label { color:#c62828; font-weight:500; font-size:0.65em; }
+table.cal td.pending { background:#fff8e1; border:1px dashed #f9a825; }
+table.cal td.pending .label { color:#f57f17; font-weight:500; font-size:0.63em; }
+
+/* Summary tables */
+.summary { background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); padding:24px; margin-bottom:36px; }
+.summary h2 { text-align:center; margin-bottom:16px; font-size:1.3em; }
+.summary table.sum { width:100%; border-collapse:collapse; margin-bottom:16px; }
+.summary table.sum th { background:#f5f5f5; padding:8px 10px; text-align:left; border:1px solid #e0e0e0; font-size:0.9em; }
+.summary table.sum td { padding:8px 10px; border:1px solid #e0e0e0; font-size:0.9em; }
+.summary table.sum tr:hover td { background:#fafafa; }
+.summary table.sum .note { color:#888; font-style:italic; font-size:0.85em; }
+
+/* Tips */
+.tips { background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); padding:24px; margin-bottom:36px; }
+.tips h2 { text-align:center; margin-bottom:16px; font-size:1.3em; }
+.tips table.tip { width:100%; border-collapse:collapse; }
+.tips table.tip th { background:#f5f5f5; padding:8px 10px; text-align:left; border:1px solid #e0e0e0; font-size:0.9em; }
+.tips table.tip td { padding:8px 10px; border:1px solid #e0e0e0; font-size:0.9em; }
+.tips .disclaimer { text-align:center; color:#999; font-size:0.8em; margin-top:12px; }
+
+/* Footer */
+.footer { text-align:center; color:#888; font-size:0.85em; padding:20px 0; }
+.footer a { color:#1976d2; text-decoration:none; }
+.footer a:hover { text-decoration:underline; }
+
+@media print {
+  body { background:#fff; padding:15px; }
+  .month { box-shadow:none; border:1px solid #ddd; page-break-inside:avoid; }
+  .header .sub a { color:#333; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>📅 2027 中国 &amp; 法国工作日与假期对照日历</h1>
+  <p style="font-size:1.15em;color:#666;margin:4px 0 10px;">Calendrier 2027 · Chine et France</p>
+  <div class="sub">
+    <span class="tag-cn">🟢 中国法定假日</span>
+    <span class="tag-fr">🔵 法国法定假日</span>
+    <span class="tag-both">🟣 两国共同休息</span>
+    <span class="tag-reg">🔴 地区性假日（法国）</span>
+    <span class="tag-pend">🟡 待官方公布</span>
+    <br>
+    数据来源：
+    <a href="https://www.gov.cn/zhengce/zhengceku/202411/content_6986381.html" target="_blank">中国政府网 — 放假办法 (2024 Revision)</a>
+    ·
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F24261" target="_blank">Service-Public.fr — Jours fériés</a>
+    ·
+    <a href="https://www.timeanddate.com/holidays/france/2027" target="_blank">timeanddate.com — 法国 2027</a>
+  </div>
+  <p style="margin-top:10px;font-size:0.85em;color:#b8860b;">⚠️ 中国2027年具体调休安排尚未发布（预计2026年底公布）。标记 🟡 的日期是基于《全国年节及纪念日放假办法》法定框架的估算，待国务院通知发布后将更新。</p>
+</div>
+
+<!-- ====== January ====== -->
+<div class="month">
+  <div class="month-title">2027年1月 <span class="holiday-note"><strong class="flag">CN</strong> 元旦 1/1 🟢 &emsp; <strong class="flag">FR</strong> Jour de l'An 1/1 🔵 &emsp; ➡ 1/1 🟣 两国同休</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="both"><div class="day">1</div><div class="label">🎉元旦 / Jour de l'An</div></td>
+      <td class="weekend"><div class="day">2</div></td>
+      <td class="weekend"><div class="day">3</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">4</div></td><td><div class="day">5</div></td><td><div class="day">6</div></td><td><div class="day">7</div></td><td><div class="day">8</div></td>
+      <td class="weekend"><div class="day">9</div></td><td class="weekend"><div class="day">10</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td>
+      <td class="weekend"><div class="day">16</div></td><td class="weekend"><div class="day">17</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td>
+      <td class="weekend"><div class="day">23</div></td><td class="weekend"><div class="day">24</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td>
+      <td class="weekend"><div class="day">30</div></td><td class="weekend"><div class="day">31</div></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== February ====== -->
+<div class="month">
+  <div class="month-title">2027年2月 <span class="holiday-note"><strong class="flag">CN</strong> 🧧 春节 2/5-2/12 🟢 ⚠️ 调休待公布 2/9-2/12 🟡</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td>
+      <td class="cn"><div class="day">5</div><div class="label">🧧除夕</div></td>
+      <td class="cn weekend"><div class="day">6</div><div class="label">🧧初一</div></td>
+      <td class="cn weekend"><div class="day">7</div><div class="label">🧧初二</div></td>
+    </tr>
+    <tr>
+      <td class="cn"><div class="day">8</div><div class="label">🧧初三</div></td>
+      <td class="pending"><div class="day">9</div><div class="label">⚠️调休待公布</div></td>
+      <td class="pending"><div class="day">10</div><div class="label">⚠️调休待公布</div></td>
+      <td class="pending"><div class="day">11</div><div class="label">⚠️调休待公布</div></td>
+      <td class="pending"><div class="day">12</div><div class="label">⚠️调休待公布</div></td>
+      <td class="weekend"><div class="day">13</div></td>
+      <td class="weekend"><div class="day">14</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td><td><div class="day">19</div></td>
+      <td class="weekend"><div class="day">20</div></td><td class="weekend"><div class="day">21</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td>
+      <td class="weekend"><div class="day">27</div></td><td class="weekend"><div class="day">28</div></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== March ====== -->
+<div class="month">
+  <div class="month-title">2027年3月 <span class="holiday-note"><strong class="flag">FR</strong> Lundi de Pâques 3/29 🔵 &emsp; Vendredi Saint 3/26 (Alsace-Moselle) 🔴</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td>
+      <td class="weekend"><div class="day">6</div></td><td class="weekend"><div class="day">7</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td>
+      <td class="weekend"><div class="day">13</div></td><td class="weekend"><div class="day">14</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td><td><div class="day">19</div></td>
+      <td class="weekend"><div class="day">20</div></td><td class="weekend"><div class="day">21</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td>
+      <td class="regional"><div class="day">26</div><div class="label">✝️Vendredi Saint *</div></td>
+      <td class="weekend"><div class="day">27</div></td><td class="weekend"><div class="day">28</div></td>
+    </tr>
+    <tr>
+      <td class="fr"><div class="day">29</div><div class="label">🐣Lundi de Pâques</div></td>
+      <td><div class="day">30</div></td><td><div class="day">31</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== April ====== -->
+<div class="month">
+  <div class="month-title">2027年4月 <span class="holiday-note"><strong class="flag">CN</strong> 🌿 清明节 4/5 🟢</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td>
+      <td class="weekend"><div class="day">3</div></td><td class="weekend"><div class="day">4</div></td>
+    </tr>
+    <tr>
+      <td class="cn"><div class="day">5</div><div class="label">🌿清明节</div></td>
+      <td><div class="day">6</div></td><td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td>
+      <td class="weekend"><div class="day">10</div></td><td class="weekend"><div class="day">11</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">12</div></td><td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td>
+      <td class="weekend"><div class="day">17</div></td><td class="weekend"><div class="day">18</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td>
+      <td class="weekend"><div class="day">24</div></td><td class="weekend"><div class="day">25</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== May ====== -->
+<div class="month">
+  <div class="month-title">2027年5月 <span class="holiday-note"><strong class="flag">CN</strong> 💪 劳动节 5/1-2 🟢 · 调休待公布 5/3-5 🟡 &emsp; <strong class="flag">FR</strong> Fête du Travail 5/1 🔵 · Ascension 5/6 🔵 · Victoire 1945 5/8 🔵 · Pentecôte 5/17 🔵</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="cn fr weekend"><div class="day">1</div><div class="label">💪劳动节 / Fête du Travail</div></td>
+      <td class="cn weekend"><div class="day">2</div><div class="label">💪劳动节</div></td>
+    </tr>
+    <tr>
+      <td class="pending"><div class="day">3</div><div class="label">⚠️调休待公布</div></td>
+      <td class="pending"><div class="day">4</div><div class="label">⚠️调休待公布</div></td>
+      <td class="pending"><div class="day">5</div><div class="label">⚠️调休待公布</div></td>
+      <td class="fr"><div class="day">6</div><div class="label">⛪Ascension</div></td>
+      <td><div class="day">7</div></td>
+      <td class="fr weekend"><div class="day">8</div><div class="label">🕊️Victoire 1945</div></td>
+      <td class="weekend"><div class="day">9</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td><td><div class="day">14</div></td>
+      <td class="weekend"><div class="day">15</div></td><td class="weekend"><div class="day">16</div></td>
+    </tr>
+    <tr>
+      <td class="fr"><div class="day">17</div><div class="label">🕊️Pentecôte</div></td>
+      <td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td>
+      <td class="weekend"><div class="day">22</div></td><td class="weekend"><div class="day">23</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td>
+      <td class="weekend"><div class="day">29</div></td><td class="weekend"><div class="day">30</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">31</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== June ====== -->
+<div class="month">
+  <div class="month-title">2027年6月 <span class="holiday-note"><strong class="flag">CN</strong> 🐉 端午节 6/9 🟢</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td>
+      <td class="weekend"><div class="day">5</div></td><td class="weekend"><div class="day">6</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">7</div></td><td><div class="day">8</div></td>
+      <td class="cn"><div class="day">9</div><div class="label">🐉端午节</div></td>
+      <td><div class="day">10</div></td><td><div class="day">11</div></td>
+      <td class="weekend"><div class="day">12</div></td><td class="weekend"><div class="day">13</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td>
+      <td class="weekend"><div class="day">19</div></td><td class="weekend"><div class="day">20</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td>
+      <td class="weekend"><div class="day">26</div></td><td class="weekend"><div class="day">27</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== July ====== -->
+<div class="month">
+  <div class="month-title">2027年7月 <span class="holiday-note"><strong class="flag">FR</strong> Fête Nationale 7/14 🔵</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td>
+      <td class="weekend"><div class="day">3</div></td><td class="weekend"><div class="day">4</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">5</div></td><td><div class="day">6</div></td><td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td>
+      <td class="weekend"><div class="day">10</div></td><td class="weekend"><div class="day">11</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">12</div></td><td><div class="day">13</div></td>
+      <td class="fr"><div class="day">14</div><div class="label">🇫🇷Fête Nationale</div></td>
+      <td><div class="day">15</div></td><td><div class="day">16</div></td>
+      <td class="weekend"><div class="day">17</div></td><td class="weekend"><div class="day">18</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td>
+      <td class="weekend"><div class="day">24</div></td><td class="weekend"><div class="day">25</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="weekend"><div class="day">31</div></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== August ====== -->
+<div class="month">
+  <div class="month-title">2027年8月 <span class="holiday-note"><strong class="flag">FR</strong> Assomption 8/15 🔵（逢周日）</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="weekend"><div class="day">1</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td><td><div class="day">6</div></td>
+      <td class="weekend"><div class="day">7</div></td><td class="weekend"><div class="day">8</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">9</div></td><td><div class="day">10</div></td><td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td>
+      <td class="weekend"><div class="day">14</div></td>
+      <td class="fr weekend"><div class="day">15</div><div class="label">🕊️Assomption</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td>
+      <td class="weekend"><div class="day">21</div></td><td class="weekend"><div class="day">22</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td>
+      <td class="weekend"><div class="day">28</div></td><td class="weekend"><div class="day">29</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">30</div></td><td><div class="day">31</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== September ====== -->
+<div class="month">
+  <div class="month-title">2027年9月 <span class="holiday-note"><strong class="flag">CN</strong> 🌕 中秋节 9/15 🟢</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td>
+      <td class="weekend"><div class="day">4</div></td><td class="weekend"><div class="day">5</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">6</div></td><td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td>
+      <td class="weekend"><div class="day">11</div></td><td class="weekend"><div class="day">12</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">13</div></td><td><div class="day">14</div></td>
+      <td class="cn"><div class="day">15</div><div class="label">🌕中秋节</div></td>
+      <td><div class="day">16</div></td><td><div class="day">17</div></td>
+      <td class="weekend"><div class="day">18</div></td><td class="weekend"><div class="day">19</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td>
+      <td class="weekend"><div class="day">25</div></td><td class="weekend"><div class="day">26</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== October ====== -->
+<div class="month">
+  <div class="month-title">2027年10月 <span class="holiday-note"><strong class="flag">CN</strong> 🇨🇳 国庆节 10/1-3 🟢 · 调休待公布 10/4-7 🟡</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+      <td class="cn"><div class="day">1</div><div class="label">🇨🇳国庆节</div></td>
+      <td class="cn weekend"><div class="day">2</div><div class="label">🇨🇳国庆节</div></td>
+      <td class="cn weekend"><div class="day">3</div><div class="label">🇨🇳国庆节</div></td>
+    </tr>
+    <tr>
+      <td class="pending"><div class="day">4</div><div class="label">⚠️调休待公布</div></td>
+      <td class="pending"><div class="day">5</div><div class="label">⚠️调休待公布</div></td>
+      <td class="pending"><div class="day">6</div><div class="label">⚠️调休待公布</div></td>
+      <td class="pending"><div class="day">7</div><div class="label">⚠️调休待公布</div></td>
+      <td><div class="day">8</div></td>
+      <td class="weekend"><div class="day">9</div></td><td class="weekend"><div class="day">10</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">11</div></td><td><div class="day">12</div></td><td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td>
+      <td class="weekend"><div class="day">16</div></td><td class="weekend"><div class="day">17</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">18</div></td><td><div class="day">19</div></td><td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td>
+      <td class="weekend"><div class="day">23</div></td><td class="weekend"><div class="day">24</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">25</div></td><td><div class="day">26</div></td><td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td>
+      <td class="weekend"><div class="day">30</div></td><td class="weekend"><div class="day">31</div></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== November ====== -->
+<div class="month">
+  <div class="month-title">2027年11月 <span class="holiday-note"><strong class="flag">FR</strong> Toussaint 11/1 🔵 · Armistice 11/11 🔵</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td class="fr"><div class="day">1</div><div class="label">🕯️Toussaint</div></td>
+      <td><div class="day">2</div></td><td><div class="day">3</div></td><td><div class="day">4</div></td><td><div class="day">5</div></td>
+      <td class="weekend"><div class="day">6</div></td><td class="weekend"><div class="day">7</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td>
+      <td class="fr"><div class="day">11</div><div class="label">🕊️Armistice 1918</div></td>
+      <td><div class="day">12</div></td>
+      <td class="weekend"><div class="day">13</div></td><td class="weekend"><div class="day">14</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td><td><div class="day">18</div></td><td><div class="day">19</div></td>
+      <td class="weekend"><div class="day">20</div></td><td class="weekend"><div class="day">21</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td><td><div class="day">25</div></td><td><div class="day">26</div></td>
+      <td class="weekend"><div class="day">27</div></td><td class="weekend"><div class="day">28</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">29</div></td><td><div class="day">30</div></td>
+      <td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== December ====== -->
+<div class="month">
+  <div class="month-title">2027年12月 <span class="holiday-note"><strong class="flag">FR</strong> Noël 12/25 🔵（逢周六）</span></div>
+  <table class="cal">
+    <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+    <tr>
+      <td class="empty"></td><td class="empty"></td>
+      <td><div class="day">1</div></td><td><div class="day">2</div></td><td><div class="day">3</div></td>
+      <td class="weekend"><div class="day">4</div></td><td class="weekend"><div class="day">5</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">6</div></td><td><div class="day">7</div></td><td><div class="day">8</div></td><td><div class="day">9</div></td><td><div class="day">10</div></td>
+      <td class="weekend"><div class="day">11</div></td><td class="weekend"><div class="day">12</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">13</div></td><td><div class="day">14</div></td><td><div class="day">15</div></td><td><div class="day">16</div></td><td><div class="day">17</div></td>
+      <td class="weekend"><div class="day">18</div></td><td class="weekend"><div class="day">19</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">20</div></td><td><div class="day">21</div></td><td><div class="day">22</div></td><td><div class="day">23</div></td><td><div class="day">24</div></td>
+      <td class="fr weekend"><div class="day">25</div><div class="label">🎄Noël</div></td>
+      <td class="regional weekend"><div class="day">26</div><div class="label">🎄St-Étienne *</div></td>
+    </tr>
+    <tr>
+      <td><div class="day">27</div></td><td><div class="day">28</div></td><td><div class="day">29</div></td><td><div class="day">30</div></td><td><div class="day">31</div></td>
+      <td class="empty"></td><td class="empty"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== Summary ====== -->
+<div class="summary">
+  <h2>📊 全年假日汇总</h2>
+
+  <h3 style="margin:12px 0 8px;font-size:1.05em;">🇨🇳 中国 — 2027年法定假日</h3>
+  <table class="sum">
+    <tr><th>节日</th><th>日期</th><th>星期</th><th>备注</th></tr>
+    <tr><td>🎉 元旦</td><td>1月1日</td><td>周五</td><td>自然连休3天（预计1月1–3日）</td></tr>
+    <tr><td>🧧 春节（除夕–初三）</td><td>2月5–8日</td><td>周五–周一</td><td><strong>法定4天</strong> · 预计假期8–10天，待公布 🟡</td></tr>
+    <tr><td>🌿 清明节</td><td>4月5日</td><td>周一</td><td>自然连休3天（预计4月3–5日）</td></tr>
+    <tr><td>💪 劳动节</td><td>5月1–2日</td><td>周六–周日</td><td><strong>法定2天</strong> · 预计假期5天，待公布 🟡</td></tr>
+    <tr><td>🐉 端午节</td><td>6月9日</td><td>周三</td><td>单日假（周三，预计不调休）</td></tr>
+    <tr><td>🌕 中秋节</td><td>9月15日</td><td>周三</td><td>单日假（周三，预计不调休）</td></tr>
+    <tr><td>🇨🇳 国庆节</td><td>10月1–3日</td><td>周五–周日</td><td><strong>法定3天</strong> · 预计假期7天，待公布 🟡</td></tr>
+  </table>
+  <p style="font-size:0.85em;color:#888;">🟡 <strong>待公布：</strong>春节、劳动节、国庆节的具体调休安排需等国务院通知（预计2026年底发布）。</p>
+
+  <h3 style="margin:18px 0 8px;font-size:1.05em;">🇫🇷 法国 — 2027年法定假日（ jours fériés ）</h3>
+  <table class="sum">
+    <tr><th>节日</th><th>日期</th><th>星期</th><th>备注</th></tr>
+    <tr><td>🎉 Jour de l'An</td><td>1月1日</td><td>周五</td><td>自然连休3天</td></tr>
+    <tr><td>🐣 Lundi de Pâques</td><td>3月29日</td><td>周一</td><td>自然连休3天</td></tr>
+    <tr><td>💪 Fête du Travail</td><td>5月1日</td><td>周六</td><td>逢周末 — 不补假</td></tr>
+    <tr><td>⛪ Ascension</td><td>5月6日</td><td>周四</td><td>可搭桥（请5月7日周五）</td></tr>
+    <tr><td>🕊️ Victoire 1945</td><td>5月8日</td><td>周六</td><td>逢周末 — 不补假</td></tr>
+    <tr><td>🕊️ Pentecôte</td><td>5月17日</td><td>周一</td><td>自然连休3天</td></tr>
+    <tr><td>🇫🇷 Fête Nationale</td><td>7月14日</td><td>周三</td><td>可搭桥（请7月15–16日）</td></tr>
+    <tr><td>🕊️ Assomption</td><td>8月15日</td><td>周日</td><td>逢周末 — 不补假</td></tr>
+    <tr><td>🕯️ Toussaint</td><td>11月1日</td><td>周一</td><td>自然连休3天</td></tr>
+    <tr><td>🕊️ Armistice 1918</td><td>11月11日</td><td>周四</td><td>可搭桥（请11月12日周五）</td></tr>
+    <tr><td>🎄 Noël</td><td>12月25日</td><td>周六</td><td>逢周末 — 不补假</td></tr>
+    <tr style="background:#f9f9f9;"><td colspan="2"><strong>合计</strong></td><td><strong>11 jours fériés</strong></td><td>6个工作日 · 3个周六 · 2个周日</td></tr>
+  </table>
+
+  <h3 style="margin:18px 0 8px;font-size:1.05em;">🔴 地区性假日（法国 — 仅阿尔萨斯-摩泽尔）</h3>
+  <table class="sum">
+    <tr><th>节日</th><th>日期</th><th>星期</th><th>适用地区</th></tr>
+    <tr><td>✝️ Vendredi Saint</td><td>3月26日</td><td>周五</td><td>下莱茵、上莱茵、摩泽尔</td></tr>
+    <tr><td>🎄 Saint-Étienne</td><td>12月26日</td><td>周日</td><td>下莱茵、上莱茵、摩泽尔</td></tr>
+  </table>
+
+  <h3 style="margin:18px 0 8px;font-size:1.05em;">🟣 共同放假日 — 两国同休</h3>
+  <table class="sum">
+    <tr><th>日期</th><th>中国节日</th><th>法国节日</th></tr>
+    <tr><td><strong>1月1日（周五）</strong></td><td>🎉 元旦</td><td>🎉 Jour de l'An</td></tr>
+  </table>
+  <p style="font-size:0.85em;color:#888;margin-top:6px;">💡 仅1天共同假日——元旦。两国均有劳动节（5月1日），但2027年逢周六。</p>
+</div>
+
+<!-- ====== Tips ====== -->
+<div class="tips">
+  <h2>💡 拼假攻略 — 2027</h2>
+  <p style="text-align:center;color:#666;margin-bottom:16px;font-size:0.9em;">围绕法定假日请假，连休更长的假期！</p>
+
+  <h3 style="margin:16px 0 10px;font-size:1.05em;color:#2e7d32;">🇨🇳 中国拼假攻略</h3>
+  <p style="font-size:0.85em;color:#666;margin-bottom:10px;">中国2027年调休安排尚未公布，以下为基于法定框架的估算建议</p>
+  <table class="tip">
+    <tr><th>时段</th><th>请假策略</th><th>请假天数</th><th>连休天数</th></tr>
+    <tr>
+      <td>🎉 <strong>元旦</strong></td>
+      <td>1月1日（周五）→ 自然连休3天（1月1–3日）<br>无需请假</td>
+      <td><strong>0天</strong></td>
+      <td><strong>3天</strong></td>
+    </tr>
+    <tr>
+      <td>🧧 <strong>春节</strong></td>
+      <td>除夕2月5日（周五）→ 预计假期8–10天<br>全年最长假期，无需额外请假</td>
+      <td><strong>0天</strong></td>
+      <td><strong>约8–10天</strong></td>
+    </tr>
+    <tr>
+      <td>🌿 <strong>清明节</strong></td>
+      <td>4月5日（周一）→ 自然连休3天（4月3–5日）<br>无需请假</td>
+      <td><strong>0天</strong></td>
+      <td><strong>3天</strong></td>
+    </tr>
+    <tr style="background:#fff8e1;">
+      <td>💪 <strong>劳动节最大化</strong> 🏆</td>
+      <td>预计5天假期（5月1–5日）<br>→ 请5月6–7日（周四–周五）2天假<br>= 连休9天！</td>
+      <td><strong>2天</strong></td>
+      <td><strong>9天</strong></td>
+    </tr>
+    <tr>
+      <td>🐉 <strong>端午节</strong></td>
+      <td>6月9日（周三）— 单日假<br>周三不调休，难以搭桥</td>
+      <td><strong>—</strong></td>
+      <td><strong>1天</strong></td>
+    </tr>
+    <tr>
+      <td>🌕 <strong>中秋节</strong></td>
+      <td>9月15日（周三）— 单日假<br>周三不调休，难以搭桥</td>
+      <td><strong>—</strong></td>
+      <td><strong>1天</strong></td>
+    </tr>
+    <tr style="background:#fff8e1;">
+      <td>🇨🇳 <strong>国庆黄金周</strong> 🏆</td>
+      <td>预计7天假期（10月1–7日）<br>→ 请10月8–9日 2天假<br>= 连休10天！</td>
+      <td><strong>2天</strong></td>
+      <td><strong>10天</strong></td>
+    </tr>
+  </table>
+
+  <h3 style="margin:24px 0 10px;font-size:1.05em;color:#1565c0;">🇫🇷 法国拼假攻略 — "Faire le Pont"</h3>
+  <p style="font-size:0.85em;color:#666;margin-bottom:10px;">法国假期的分布非常适合"faire le pont"（搭桥请假）</p>
+  <table class="tip">
+    <tr><th>时段</th><th>请假策略</th><th>请假天数</th><th>连休天数</th></tr>
+    <tr>
+      <td>🎉 <strong>元旦</strong></td>
+      <td>1月1日（周五）→ 自然连休3天</td>
+      <td><strong>0天</strong></td>
+      <td><strong>3天</strong></td>
+    </tr>
+    <tr>
+      <td>🐣 <strong>复活节周末</strong></td>
+      <td>复活节周一3月29日 → 自然连休3天（3月27–29日）<br>+ 阿尔萨斯-摩泽尔地区有耶稣受难日（3月26日）→ 连休4天</td>
+      <td><strong>0天</strong></td>
+      <td><strong>3–4天</strong></td>
+    </tr>
+    <tr style="background:#fff8e1;">
+      <td>⛪ <strong>耶稣升天节搭桥</strong></td>
+      <td>耶稣升天节5月6日（周四）<br>→ 请5月7日（周五）1天假，连休4天</td>
+      <td><strong>1天</strong></td>
+      <td><strong>4天</strong></td>
+    </tr>
+    <tr style="background:#fff8e1;">
+      <td>🌻 <strong>五月超长假期</strong> 🏆</td>
+      <td>耶稣升天节5月6日（周四）+ 圣灵降临节5月17日（周一）<br>→ 请5月3–5日（3天）+ 7日（1天）+ 10–14日（5天）<br>= 连休17天！</td>
+      <td><strong>9天</strong></td>
+      <td><strong>17天</strong></td>
+    </tr>
+    <tr>
+      <td>🇫🇷 <strong>国庆日搭桥</strong></td>
+      <td>国庆日7月14日（周三）<br>→ 请7月15–16日（周四–周五）2天假</td>
+      <td><strong>2天</strong></td>
+      <td><strong>5天</strong></td>
+    </tr>
+    <tr>
+      <td>🕯️ <strong>诸圣节</strong></td>
+      <td>11月1日（周一）→ 自然连休3天（10月30日–11月1日）</td>
+      <td><strong>0天</strong></td>
+      <td><strong>3天</strong></td>
+    </tr>
+    <tr style="background:#fff8e1;">
+      <td>🕊️ <strong>十一月组合</strong> 🏆</td>
+      <td>诸圣节11月1日（周一）+ 一战停战日11月11日（周四）<br>→ 请11月8–10日（3天）+ 12日（1天）<br>= 连休9天！</td>
+      <td><strong>4天</strong></td>
+      <td><strong>9天</strong></td>
+    </tr>
+  </table>
+
+  <h3 style="margin:24px 0 10px;font-size:1.05em;color:#5c6bc0;">🟣 跨国建议</h3>
+  <p style="font-size:0.9em;color:#555;">
+    2027年唯一共同假日是 <strong>元旦（1月1日）</strong>——两国都休息。<br>
+    如果想一起出游，推荐 <strong>2027年5月</strong>——法国有多个假期集群（耶稣升天节5月6日、圣灵降临节5月17日），中国有劳动节黄金周。双方合理请假，跨国聚会非常可行！
+  </p>
+  <p class="disclaimer">🤖 AI 生成建议，仅供参考 · 2027年调休安排待官方公布 — 届时请关注中国政府网</p>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>📅 最后更新：2026年6月 · 由 Claude Code 生成 · HolidayMatch</p>
+  <p>
+    <a href="https://www.gov.cn/zhengce/zhengceku/202411/content_6986381.html" target="_blank">中国政府网 — 全国年节及纪念日放假办法</a>
+    ·
+    <a href="https://www.service-public.fr/particuliers/vosdroits/F24261" target="_blank">Service-Public.fr — Jours fériés 2027</a>
+    ·
+    <a href="https://www.timeanddate.com/holidays/france/2027" target="_blank">timeanddate.com — 法国 2027</a>
+  </p>
+  <p style="margin-top:4px;color:#aaa;font-size:0.85em;">
+    * Vendredi Saint（耶稣受难日）和 Saint-Étienne（圣斯蒂芬日）仅在阿尔萨斯-摩泽尔地区（下莱茵、上莱茵、摩泽尔）为法定假日。<br>
+    🟡 中国调休安排待国务院正式发布（预计2026年底）。当前为估值日期，可能调整。<br>
+    浮动节日（中秋、端午、清明）由农历决定——已通过2027年农历日期交叉验证。
+  </p>
+</div>
+
+</div>
+</body>
+</html>
