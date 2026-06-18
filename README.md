@@ -13,7 +13,7 @@
 | **🌸 增值和设计** | （待开发）导出和分享，丰富和自定义的样式 | 一键导出飞书表格/PDF/图片，富媒体样式如Notion，自定义背景图 | （待开发） | 方便分享和协作裂变，设计的情绪价值 |
 <img width="1239" height="708" alt="image" src="https://github.com/user-attachments/assets/992293e2-0526-4d20-8ed7-2580d14f66c7" />
 
-<img width="1132" height="776" alt="image" src="https://github.com/user-attachments/assets/676ce14b-f0e3-4b2a-b331-e2e2399d6816" />
+<img width="1031" height="531" alt="holidaymatchSnipaste_2026-06-18_23-28-21" src="https://github.com/user-attachments/assets/0bd064c7-e1da-47bb-b1d3-67703b6b7cde" />
 
 ## AI SKILL  
 ● .claude/skills/  
